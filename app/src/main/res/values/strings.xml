@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">documentManagement</string>
+
+    <!--action bottom nav-->
+    <string name="action_home">Home</string>
+    <string name="action_recevi">Recevi</string>
+    <string name="action_send">Send</string>
+    <string name="action_acount">Acount</string>
+</resources>
