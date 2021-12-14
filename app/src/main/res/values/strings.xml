@@ -6,4 +6,7 @@
     <string name="action_recevi">Recevi</string>
     <string name="action_send">Send</string>
     <string name="action_acount">Acount</string>
+
+    <string name="nav_drawer_open">Open Navigation Drawer</string>
+    <string name="nav_drawer_close">Close Navigation Drawer</string>
 </resources>

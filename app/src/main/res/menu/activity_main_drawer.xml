@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/action_home"
+            android:title="@string/action_home"
+            android:icon="@drawable/icon_home"
+            ></item>
+        <item android:id="@+id/action_recevi"
+            android:title="@string/action_recevi"
+            android:icon="@drawable/recevi"
+            ></item>
+        <item android:id="@+id/action_send"
+            android:title="@string/action_send"
+            android:icon="@drawable/sent"
+            ></item>
+
+
+    </group>
+    <item android:title="@string/action_acount">
+        <menu>
+            <item android:id="@+id/action_Acount"
+                android:title="@string/action_acount"
+                android:icon="@drawable/ic_user"
+                ></item>
+
+        </menu>
+    </item>
+</menu>
