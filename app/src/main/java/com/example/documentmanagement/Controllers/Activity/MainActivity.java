@@ -2,16 +2,31 @@ package com.example.documentmanagement.Controllers.Activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
+import android.widget.GridLayout;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.documentmanagement.Controllers.Adapter.PhotoViewpager2Adapter;
+import com.example.documentmanagement.Controllers.Adapter.ViewpagerAdapter;
 import com.example.documentmanagement.Controllers.animation.ZoomOutPageTransformer;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.PhoTo;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +34,16 @@ import java.util.List;
 import me.relex.circleindicator.CircleIndicator3;
 
 
-public class MainActivity extends AppCompatActivity {
-    Toolbar toolBar;
-    ViewFlipper sliderImg;
-    private ViewPager2 viewPager2;
-    private CircleIndicator3 circleIndicator3;
-    private List<PhoTo> listPhoto;
-    private Handler handler = new Handler();
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // set slide
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            if(viewPager2.getCurrentItem() == listPhoto.size() -1 ){
-                viewPager2.setCurrentItem(0);
-            }else
-            {
-                viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
-            }
 
-        }
-    };
+    private DrawerLayout drawerLayout; //layout chứa navigationview
+    private NavigationView navigationview;
+    private BottomNavigationView bottom_nav;
+    private ViewPager viewPager; //chứa fragment
+    Toolbar toolbar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,60 +54,137 @@ public class MainActivity extends AppCompatActivity {
 
     // ánh xạ
     public void Mapping() {
-
-        viewPager2 = (ViewPager2) findViewById(R.id.viewPage2);
-        circleIndicator3 = (CircleIndicator3) findViewById(R.id.circleIndicator3);
+        bottom_nav = (BottomNavigationView) findViewById(R.id.bottom_nav);
+        viewPager = findViewById(R.id.frag_viewpager);
+        toolbar = findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationview = findViewById(R.id.nav_view);
     }
-
     public void initView( ){
-        // slide img
-        PhotoAdapter();
+
+        setUpViewPager();
+        setBottom_nav();
+        setToolbar();
+        setDrawerToggle();
+        setNavigationView();
     }
 
-    private void PhotoAdapter() {
-        listPhoto = getListPhoto();
-        PhotoViewpager2Adapter adapter  = new PhotoViewpager2Adapter(listPhoto);
-        viewPager2.setAdapter(adapter);
+    private void setNavigationView() {
+        navigationview.setNavigationItemSelectedListener(this);
+    }
 
-        //connect view page with circelindicator
-        circleIndicator3.setViewPager(viewPager2);
+    private void setDrawerToggle() {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.nav_drawer_open,R.string.nav_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+    }
 
+    private void setToolbar() {
+        setSupportActionBar(toolbar);
+    }
 
-        //auto run
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+    private void setBottom_nav() {
+        bottom_nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable, 3000);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case  R.id.action_home:
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case R.id.action_recevi:
+                        viewPager.setCurrentItem(1);
+                        break;
+                    case R.id.action_send:
+                        viewPager.setCurrentItem(2);
+                        break;
+                    case R.id.action_Acount:
+                        viewPager.setCurrentItem(3);
+                        break;
+                }
+                return true;
             }
         });
+    }
+    private void setUpViewPager(){
+        ViewpagerAdapter viewpagerAdapter = new ViewpagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(viewpagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        // animation
-        viewPager2.setPageTransformer(new ZoomOutPageTransformer());
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        bottom_nav.getMenu().findItem(R.id.action_home).setChecked(true);
+                        break;
+                    case 1:
+                        bottom_nav.getMenu().findItem(R.id.action_recevi).setChecked(true);
+                        break;
+                    case 2:
+                        bottom_nav.getMenu().findItem(R.id.action_send).setChecked(true);
+                        break;
+                    case 3:
+                        bottom_nav.getMenu().findItem(R.id.action_Acount).setChecked(true);
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
-    private List<PhoTo> getListPhoto(){
-        List<PhoTo> list = new ArrayList<>();
-        list.add(new PhoTo(R.drawable.img_slider_muonkiep));
-        list.add(new PhoTo(R.drawable.img_slider_nhagiak));
-        list.add(new PhoTo(R.drawable.img_slider_tuyet));
-        list.add(new PhoTo(R.drawable.img_slider_muonkiep));
-        return list;
-    }
+
+
 
 
     //  pause slider when  out app
     @Override
     protected void onPause() {
         super.onPause();
-        handler.removeCallbacks(runnable);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        handler.postDelayed(runnable,3000);
+
     }
 
+    //sự kien click vao navigation view
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case  R.id.action_home:
+                viewPager.setCurrentItem(0);
+                break;
+            case R.id.action_recevi:
+                viewPager.setCurrentItem(1);
+                break;
+            case R.id.action_send:
+                viewPager.setCurrentItem(2);
+                break;
+            case R.id.action_Acount:
+                viewPager.setCurrentItem(3);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
+    @Override
+    public void onBackPressed() {
+        // nếu đang mở drawer thì đóng khi bấm nút trở lại
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else
+             super.onBackPressed();
+    }
 }

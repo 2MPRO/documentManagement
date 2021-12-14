@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/MY FILE/Documents/Thien Project/android/documentManagement/app/src/main/res/drawable/bg_indicator.xml" value="0.1" />
         <entry key="..\:/MY FILE/Documents/Thien Project/android/documentManagement/app/src/main/res/layout/activity_main.xml" value="0.1546875" />
+<<<<<<< HEAD
         <entry key="..\:/ThucHanhDiDong/Do_An_Android/documentManagement/app/src/main/res/drawable/account_circle.xml" value="0.2526041666666667" />
         <entry key="..\:/ThucHanhDiDong/Do_An_Android/documentManagement/app/src/main/res/drawable/lock.xml" value="0.2526041666666667" />
         <entry key="..\:/ThucHanhDiDong/Do_An_Android/documentManagement/app/src/main/res/drawable/radius_button_dang_nhap.xml" value="0.2526041666666667" />
@@ -12,6 +13,19 @@
         <entry key="..\:/ThucHanhDiDong/Do_An_Android/documentManagement/app/src/main/res/layout/activity_login.xml" value="0.23645833333333333" />
         <entry key="..\:/ThucHanhDiDong/Do_An_Android/documentManagement/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
         <entry key="..\:/ThucHanhDiDong/Do_An_Android/documentManagement/app/src/main/res/layout/item_photo.xml" value="0.23645833333333333" />
+=======
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/drawable-v24/side_nav_bar.xml" value="0.1682051282051282" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/layout/fragment_acount.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/layout/fragment_main.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/layout/fragment_recevi.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/layout/fragment_send.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/layout/item_photo.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/layout/nav_header_main.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/menu/activity_main_drawer.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/menu/main.xml" value="0.1546875" />
+        <entry key="..\:/MY FILE/Documents/Thien Project/android/thucThanh/documentManagement/app/src/main/res/menu/menu_bottom_nav.xml" value="0.1" />
+>>>>>>> c30bb459cce9b265d069df40d8c922a56ffcf006
       </map>
     </option>
   </component>
