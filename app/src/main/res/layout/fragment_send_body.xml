@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <SearchView
+        android:layout_margin="20dp"
+        android:id="@+id/search_send"
+        android:background="#F4EFEF"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <TextView
+        android:text="dlaagjgj"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+    <ListView
+        android:id="@+id/listView_send"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</LinearLayout>

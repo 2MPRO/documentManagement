@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="3"
+    android:layout_margin="10dp"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/txtNameDoc"
+        android:textSize="20sp"
+        android:textColor="@color/text"
+        android:text="NGhị quyết số 05 "
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+    </TextView>
+    <TextView
+        android:id="@+id/idDoc"
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        android:text="NGhị quyết số 05 "
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+    </TextView>
+    <TextView
+        android:id="@+id/rootDoc"
+        android:textColor="@color/text_light"
+        android:textSize="18sp"
+        android:text="NGhị quyết số 05 "
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+    </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
+
+        android:layout_width="0dp"
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/txtDate"
+            android:text="22/23/2332"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txtHour"
+            android:text="16:30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
