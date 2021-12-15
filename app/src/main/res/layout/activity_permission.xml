@@ -157,12 +157,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Quản lý tài khoản"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/radius_button_qly_tk"/>
 
     <Button
         android:layout_width="250dp"

@@ -19,7 +19,8 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:text="Phân quyền"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         android:background="@drawable/radius_button_account"/>
 
     <Button
@@ -29,7 +30,8 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:text="Quản lý tài khoản"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         android:background="@drawable/radius_button_account"/>
 
     <Button
@@ -39,7 +41,8 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:text="Chỉnh sửa tài khoản"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         android:background="@drawable/radius_button_account"/>
 
 </LinearLayout>
