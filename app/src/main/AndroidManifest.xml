@@ -11,7 +11,7 @@
         android:theme="@style/Theme.DocumentManagement">
 
         <activity
-            android:name=".Controllers.Activity.LoginActivity"
+            android:name=".Controllers.Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
