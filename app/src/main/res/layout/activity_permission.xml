@@ -14,7 +14,7 @@
         android:layout_gravity="center"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="0dp"
         android:layout_weight="15"
         android:layout_marginLeft="20dp"
@@ -27,68 +27,19 @@
             android:text="Chức vụ: Văn thư"
             android:textSize="30sp"
             android:textStyle="bold"/>
-        <LinearLayout
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp">
 
-            <CheckBox
-                android:id="@+id/cbVanThu_VB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/txtVanThu_VB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thêm sửa xóa văn bản"
-                android:textColor="@color/primary"
-                android:textSize="20sp"/>
-        </LinearLayout>
+        <ListView
+            android:id="@+id/lv_VanThu_Per"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp">
-
-            <CheckBox
-                android:id="@+id/cbVanThu_BM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/txtVanThu_BM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thêm sửa xóa biểu mẫu"
-                android:textColor="@color/primary"
-                android:textSize="20sp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp">
-
-            <CheckBox
-                android:id="@+id/cbVanThu_PQ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/txtVanThu_PQ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phân quyền"
-                android:textColor="@color/primary"
-                android:textSize="20sp" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="0dp"
         android:layout_weight="15"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:orientation="vertical">
 
@@ -99,66 +50,15 @@
             android:text="Chức vụ: Quản trị"
             android:textSize="30sp"
             android:textStyle="bold"/>
-        <LinearLayout
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp">
 
-            <CheckBox
-                android:id="@+id/cbQuanTri_VB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/txtQuanTri_VB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thêm sửa xóa văn bản"
-                android:textColor="@color/primary"
-                android:textSize="20sp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp">
-
-            <CheckBox
-                android:id="@+id/cbQuanTri_BM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/txtQuanTri_BM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thêm sửa xóa biểu mẫu"
-                android:textColor="@color/primary"
-                android:textSize="20sp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="30dp">
-
-            <CheckBox
-                android:id="@+id/cbQuanTri_PQ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/txtQuanTri_PQ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phân quyền"
-                android:textColor="@color/primary"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <ListView
+            android:id="@+id/lv_QuanTri_Per"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
-
     <Button
+        android:id="@+id/btn_Luu"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Lưu"

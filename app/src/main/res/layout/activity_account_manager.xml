@@ -28,7 +28,7 @@
            android:textStyle="bold"/>
 
        <ListView
-           android:id="@+id/lvQuanTri"
+           android:id="@+id/lv_QuanTri_Acc"
            android:layout_width="match_parent"
            android:layout_height="match_parent"/>
    </LinearLayout>
@@ -49,7 +49,7 @@
             android:textStyle="bold"/>
 
         <ListView
-            android:id="@+id/lvVanThu"
+            android:id="@+id/lv_VanThu_Acc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
