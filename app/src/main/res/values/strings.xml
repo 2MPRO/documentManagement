@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">documentManagement</string>
 
-    <!--action bottom nav-->
+    <!--action  nav-->
     <string name="action_home">Home</string>
     <string name="action_recevi">Receive</string>
     <string name="action_send">Send</string>
@@ -9,4 +9,12 @@
 
     <string name="nav_drawer_open">Open Navigation Drawer</string>
     <string name="nav_drawer_close">Close Navigation Drawer</string>
+
+    <!--action  frag tab layout receive-->
+    <string name="frag_receive_wait">frag_receive_wait</string>
+    <string name="frag_receive_approved">frag_receive_approved</string>
+
+    <!--action  frag tab layout receive-->
+    <string name="frag_send_wait">frag_send_wait</string>
+    <string name="frag_send_approved">frag_send_approved</string>
 </resources>

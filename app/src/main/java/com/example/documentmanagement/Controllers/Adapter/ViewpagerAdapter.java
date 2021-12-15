@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.documentmanagement.Controllers.Activity.AcountFragment;
-import com.example.documentmanagement.Controllers.Activity.MainFragment;
-import com.example.documentmanagement.Controllers.Activity.ReceviFragment;
-import com.example.documentmanagement.Controllers.Activity.SendFragment;
+import com.example.documentmanagement.Controllers.Fragments.AcountFragment;
+import com.example.documentmanagement.Controllers.Fragments.MainFragment;
+import com.example.documentmanagement.Controllers.Fragments.ReceviFragment;
+import com.example.documentmanagement.Controllers.Fragments.SendFragment;
 
 public class ViewpagerAdapter extends FragmentStatePagerAdapter {
 

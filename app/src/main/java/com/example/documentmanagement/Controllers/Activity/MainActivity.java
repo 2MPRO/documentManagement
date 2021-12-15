@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setToolbar() {
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
     }
 
@@ -89,20 +90,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case  R.id.action_home:
+                        toolbar.setTitle(" ");
                         viewPager.setCurrentItem(0);
                         break;
                     case R.id.action_recevi:
+                        toolbar.setTitle("Văn Bản Đến");
                         viewPager.setCurrentItem(1);
                         break;
                     case R.id.action_send:
+                        toolbar.setTitle("Văn Bản Đi");
                         viewPager.setCurrentItem(2);
                         break;
                     case R.id.action_Acount:
+                        toolbar.setTitle("Tài Khoản");
                         viewPager.setCurrentItem(3);
                         break;
                 }
+                if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
                 return true;
             }
+
         });
     }
     private void setUpViewPager(){
@@ -162,15 +171,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch (id){
             case  R.id.action_home:
+                toolbar.setTitle("");
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.action_recevi:
+                toolbar.setTitle("Văn Bản Đến");
                 viewPager.setCurrentItem(1);
                 break;
             case R.id.action_send:
+                toolbar.setTitle("Văn Bản Đi");
                 viewPager.setCurrentItem(2);
                 break;
             case R.id.action_Acount:
+                toolbar.setTitle("Tài Khoản");
                 viewPager.setCurrentItem(3);
                 break;
         }

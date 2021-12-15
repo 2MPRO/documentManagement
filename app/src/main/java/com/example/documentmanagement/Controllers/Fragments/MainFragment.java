@@ -1,4 +1,4 @@
-package com.example.documentmanagement.Controllers.Activity;
+package com.example.documentmanagement.Controllers.Fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,18 +28,18 @@ public class MainFragment extends Fragment {
     private List<PhoTo> listPhoto;
     private CircleIndicator3 circleIndicator3;
     private Handler handler = new Handler();
-
+    View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view   = inflater.inflate(R.layout.fragment_main,container,false);
+        view   = inflater.inflate(R.layout.fragment_main,container,false);
+        Mapping();
+        initView();
         return view;
-
-
     }
     public void Mapping() {
-        viewPager2 = viewPager2.findViewById(R.id.viewPage2);
-        circleIndicator3 = (CircleIndicator3) circleIndicator3.findViewById(R.id.circleIndicator3);
+        viewPager2 = view.findViewById(R.id.viewPage2);
+        circleIndicator3 = view.findViewById(R.id.circleIndicator3);
 
     }
     public void initView(){
@@ -57,14 +57,14 @@ public class MainFragment extends Fragment {
 
 
         //auto run
-/*        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+       viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 handler.removeCallbacks(runnable);
                 handler.postDelayed(runnable, 3000);
             }
-        });*/
+        });
 
         // animation
         viewPager2.setPageTransformer(new ZoomOutPageTransformer());
@@ -79,7 +79,7 @@ public class MainFragment extends Fragment {
         return list;
     }
     // set slide
-/*    private Runnable runnable = new Runnable() {
+  private Runnable runnable = new Runnable() {
         @Override
         public void run() {
             if(viewPager2.getCurrentItem() == listPhoto.size() -1 ){
@@ -90,8 +90,8 @@ public class MainFragment extends Fragment {
             }
 
         }
-    };*/
-/*    public void onPause() {
+    };
+    public void onPause() {
         super.onPause();
         handler.removeCallbacks(runnable);
     }
@@ -100,6 +100,6 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         handler.postDelayed(runnable,3000);
-    }*/
+    }
 
 }

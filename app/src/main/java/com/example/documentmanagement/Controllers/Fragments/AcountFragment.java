@@ -1,4 +1,4 @@
-package com.example.documentmanagement.Controllers.Activity;
+package com.example.documentmanagement.Controllers.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.documentmanagement.R;
 
-public class SendFragment extends Fragment {
+public class AcountFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view   = inflater.inflate(R.layout.fragment_send,container,false);
+        View view   = inflater.inflate(R.layout.fragment_acount,container,false);
         return view;
         
     }
