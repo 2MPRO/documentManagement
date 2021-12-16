@@ -4,8 +4,46 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <TextView
-    android:text="lllllllllllllllllllll"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/img_user"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_user"/>
+
+    <Button
+        android:id="@+id/btn_PhanQuyen"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Phân quyền"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/radius_button_account"/>
+
+    <Button
+        android:id="@+id/btn_QuanLy"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Quản lý tài khoản"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/radius_button_account"/>
+
+    <Button
+        android:id="@+id/btn_ChinhSua"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Chỉnh sửa tài khoản"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/radius_button_account"/>
+
 </LinearLayout>
