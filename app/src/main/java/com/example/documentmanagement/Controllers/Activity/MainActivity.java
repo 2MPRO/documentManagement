@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationview = findViewById(R.id.nav_view);
     }
     public void initView( ){
-
         setUpViewPager();
         setBottom_nav();
         setToolbar();
@@ -105,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         toolbar.setTitle("Tài Khoản");
                         viewPager.setCurrentItem(3);
                         break;
+                    default:
+                        Toast.makeText(getApplicationContext(), "có lỗi", Toast.LENGTH_SHORT).show();
                 }
                 if(drawerLayout.isDrawerOpen(GravityCompat.START)){
                     drawerLayout.closeDrawer(GravityCompat.START);

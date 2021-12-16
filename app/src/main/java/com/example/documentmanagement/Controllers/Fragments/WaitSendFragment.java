@@ -1,6 +1,8 @@
 package com.example.documentmanagement.Controllers.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,5 +30,10 @@ public class WaitSendFragment  extends Fragment {
     private void mapping() {
         search_send =  view.findViewById(R.id.search_send);
         listView = view.findViewById(R.id.listView_send);
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.e("Đang on   :","fragment send_wait");
     }
 }
