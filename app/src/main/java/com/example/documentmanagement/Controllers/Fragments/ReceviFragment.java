@@ -1,6 +1,8 @@
 package com.example.documentmanagement.Controllers.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +17,14 @@ import com.example.documentmanagement.Controllers.Adapter.ViewpagerReceiveAdapte
 import com.example.documentmanagement.R;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.IOException;
+
 public class ReceviFragment extends Fragment {
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    ViewpagerReceiveAdapter viewpagerReceiveAdapter;
-    View view   ;
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewpagerReceiveAdapter viewpagerReceiveAdapter;
+    private View view   ;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,9 +34,15 @@ public class ReceviFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.e("Đang on   :","fragment recevi");
+    }
+
     private void setTabLayout() {
         // getsupport different video
-        viewpagerReceiveAdapter = new ViewpagerReceiveAdapter(getActivity().getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewpagerReceiveAdapter = new ViewpagerReceiveAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewpagerReceiveAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }

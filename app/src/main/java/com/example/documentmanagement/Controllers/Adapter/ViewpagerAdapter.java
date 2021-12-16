@@ -31,7 +31,6 @@ public class ViewpagerAdapter extends FragmentStatePagerAdapter {
             default:
                 return new MainFragment();
         }
-
     }
 
     @Override

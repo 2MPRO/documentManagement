@@ -1,6 +1,8 @@
 package com.example.documentmanagement.Controllers.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +19,10 @@ import com.example.documentmanagement.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class SendFragment extends Fragment {
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    ViewpagerSendAdapter viewpagerSendAdapter;
-    View view   ;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewpagerSendAdapter viewpagerSendAdapter;
+    private View view ;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,10 +32,14 @@ public class SendFragment extends Fragment {
         return view;
         
     }
-
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.e("Đang on   :","fragment Send");
+    }
     private void setTabLayout() {
         // getsupport different video
-        viewpagerSendAdapter = new ViewpagerSendAdapter(getActivity().getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewpagerSendAdapter = new ViewpagerSendAdapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewpagerSendAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
@@ -42,5 +48,7 @@ public class SendFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tablayout_send);
         viewPager = view.findViewById(R.id.frag_send_pager);
     }
+    public void reloadData(){
 
+    }
 }

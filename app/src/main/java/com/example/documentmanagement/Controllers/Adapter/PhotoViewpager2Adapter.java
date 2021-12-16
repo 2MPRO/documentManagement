@@ -25,7 +25,7 @@ public class PhotoViewpager2Adapter extends RecyclerView.Adapter<PhotoViewpager2
     @NonNull
     @Override
     public PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View   view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_photo,parent, false);
+        View  view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_photo,parent, false);
         return new PhotoViewHolder(view);
     }
 

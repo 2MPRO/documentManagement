@@ -1,7 +1,9 @@
 package com.example.documentmanagement.Controllers.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,15 +34,19 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view   = inflater.inflate(R.layout.fragment_main,container,false);
+        view  = inflater.inflate(R.layout.fragment_main,container,false);
         Mapping();
         initView();
         return view;
     }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.e("Đang on   :","fragment Home");
+    }
     public void Mapping() {
         viewPager2 = view.findViewById(R.id.viewPage2);
         circleIndicator3 = view.findViewById(R.id.circleIndicator3);
-
     }
     public void initView(){
         // slide img
