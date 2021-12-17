@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Controllers.Activity.DocumentDetailActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:textColor="#E80808"
+            android:gravity="center_vertical"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Người gửi : " />
+        <TextView
+            android:id="@+id/info"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Văn thiên(admin)"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:textColor="#E80808"
+            android:gravity="center_vertical"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Tệp đính kèm : " />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerView_attach"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:textColor="#E80808"
+            android:gravity="center_vertical"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Nội dung: " />
+        <EditText
+            android:id="@+id/edit_content"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnSave"
+        android:text="Duyệt"
+        android:background="@drawable/radius_button_account"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="50dp"/>
+</LinearLayout>

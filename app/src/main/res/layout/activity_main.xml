@@ -44,8 +44,11 @@
                 />
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:layout_width="60dp"
-                    android:background="@color/primary"
+                    android:id="@+id/btnaddDocument"
+                    android:backgroundTint="#A1A6FF"
+                    android:src="@drawable/sent"
                     android:layout_gravity="bottom"
+                    android:elevation="5dp"
                     android:layout_margin="20dp"
                     android:layout_height="60dp"/>
             </FrameLayout>

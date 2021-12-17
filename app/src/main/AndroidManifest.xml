@@ -3,10 +3,12 @@
     package="com.example.documentmanagement">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -15,7 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DocumentManagement">
-
+        <activity
+            android:name=".Controllers.Activity.AddDocumentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controllers.Activity.DocumentDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".Controllers.Activity.MainActivity"
             android:exported="true">
