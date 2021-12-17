@@ -1,8 +1,10 @@
 package com.example.documentmanagement.Controllers.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.GridLayout;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -23,8 +25,11 @@ import com.example.documentmanagement.Controllers.Adapter.PhotoViewpager2Adapter
 import com.example.documentmanagement.Controllers.Adapter.ViewpagerAdapter;
 import com.example.documentmanagement.Controllers.animation.ZoomOutPageTransformer;
 import com.example.documentmanagement.R;
+import com.example.documentmanagement.model.Permission;
 import com.example.documentmanagement.model.PhoTo;
+import com.example.documentmanagement.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -42,7 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private BottomNavigationView bottom_nav;
     private ViewPager viewPager; //chứa fragment
     Toolbar toolbar;
-
+    private FloatingActionButton btnAddDoc;
+    public static ArrayList<User> userArrayList;
+    public static ArrayList<Permission> permissionArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Mapping();
         initView();
+        setbtnAdd();
+    }
+
+    private void setbtnAdd() {
+        btnAddDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),AddDocumentActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // ánh xạ
@@ -59,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationview = findViewById(R.id.nav_view);
+        btnAddDoc = findViewById(R.id.btnaddDocument);
     }
     public void initView( ){
         setUpViewPager();
@@ -129,17 +148,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (position){
                     case 0:
                         bottom_nav.getMenu().findItem(R.id.action_home).setChecked(true);
+                        navigationview.getMenu().findItem(R.id.action_home).setChecked(true);
+                        navigationview.getMenu().findItem(R.id.action_Acount).setChecked(false);
                         break;
                     case 1:
                         bottom_nav.getMenu().findItem(R.id.action_recevi).setChecked(true);
+                        navigationview.getMenu().findItem(R.id.action_recevi).setChecked(true);
+                        navigationview.getMenu().findItem(R.id.action_Acount).setChecked(false);
                         break;
                     case 2:
                         bottom_nav.getMenu().findItem(R.id.action_send).setChecked(true);
+                        navigationview.getMenu().findItem(R.id.action_send).setChecked(true);
+                        navigationview.getMenu().findItem(R.id.action_Acount).setChecked(false);
                         break;
                     case 3:
                         bottom_nav.getMenu().findItem(R.id.action_Acount).setChecked(true);
+                        navigationview.getMenu().findItem(R.id.action_Acount).setChecked(true);
                         break;
-
                 }
             }
 

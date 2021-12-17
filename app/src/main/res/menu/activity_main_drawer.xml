@@ -15,13 +15,14 @@
             android:title="Send"
             android:icon="@drawable/sent"
             ></item>
+        <item android:id="@+id/action_Acount"
+            android:title="@string/action_acount"
+            android:icon="@drawable/ic_user"
+            ></item>
     </group>
-    <item android:title="@string/action_acount">
+    <item android:title="chia sẽ">
         <menu>
-            <item android:id="@+id/action_Acount"
-                android:title="@string/action_acount"
-                android:icon="@drawable/ic_user"
-                ></item>
+
 
         </menu>
     </item>
