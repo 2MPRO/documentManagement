@@ -1,17 +1,114 @@
 package com.example.documentmanagement.Controllers.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.documentmanagement.R;
+import com.example.documentmanagement.model.User;
+import com.example.documentmanagement.util.Server;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private EditText editpass;
+    private EditText edituser;
+    private Button buttonLogin;
+    private String user;
+    private String pass;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mapping();
+
+        setbuttonLogin();
     }
-}
+
+    private void setbuttonLogin() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+    }
+
+    private void mapping() {
+        buttonLogin = findViewById(R.id.btnDangNhap);
+        editpass = findViewById(R.id.txtAcc);
+        edituser = findViewById(R.id.imgPass);
+    }
+
+    public void login(){
+        user = edituser.getText().toString().trim();
+        pass = editpass.getText().toString().trim();
+        if(!user.equals("")&&!pass.equals("")){
+
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.LinkToLogin, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        if (!response.contains("failure")) {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject jsonObject = jsonArray.getJSONObject(0);
+                            jsonObject = jsonArray.getJSONObject(0);
+                            User use = new User(jsonObject.getString("taiKhoan").trim(), jsonObject.getString("hoten").trim(), jsonObject.getString("matkhau").trim(), String.valueOf(jsonObject.getInt("idPhongBan")).trim(), jsonObject.getString("tenPhongBan").trim(), jsonObject.getString("ngaysinh").trim(), jsonObject.getString("gioitinh").trim(), jsonObject.getString("diachi").trim());
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Log.d("email", " " + user);
+                            intent.putExtra("user", use);
+                            startActivity(intent);
+                            finish();
+                            Log.e("QB", "onResponse: " + response);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Nhập sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }){
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> data = new HashMap<>();
+                    data.put("user",user);
+                    data.put("pass",pass);
+                    return data;
+                }
+            };
+            requestQueue.add(stringRequest);
+        }
+
+        }
+    }
+
+
