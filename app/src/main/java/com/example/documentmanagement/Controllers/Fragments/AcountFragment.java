@@ -25,7 +25,7 @@ public class AcountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view   = inflater.inflate(R.layout.fragment_acount,container,false);
         mapping();
-
+        SignOut();
 
 
         return view;
@@ -38,8 +38,14 @@ public class AcountFragment extends Fragment {
     }
 
     private void SignOut() {            // Đăng xuất
-        Intent intent1 = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent1);
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent1);
+            }
+        });
+
     }
 
     private void mapping() {            // Ánh xạ
