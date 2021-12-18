@@ -85,7 +85,7 @@ public class WaitSendFragment  extends Fragment {
     private void setListView() {
         documentArrayList = new ArrayList<>();
         documentArrayList.add(new Document("s","s","s","s","s"));
-        documentAdapter = new Document_Adapter(documentArrayList,WaitSendFragment.this);
+        documentAdapter = new Document_Adapter(documentArrayList,WaitSendFragment.this,"Gửi");
         listView.setAdapter(documentAdapter);
 
     }

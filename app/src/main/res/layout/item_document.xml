@@ -17,7 +17,7 @@
     <TextView
 
         android:id="@+id/txtNameDoc"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/text"
         android:text="NGhị quyết số 05 "
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             >
             <TextView
                 android:textColor="@color/text"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Số: "
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/numDoc"
                 android:textColor="@color/text"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:text="NGhị quyết số 05 "
                 android:layout_width="match_parent"
                 android:layout_height="30dp">
@@ -52,14 +52,14 @@
         android:layout_height="60dp">
         <TextView
             android:textColor="@color/text_light"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:text="CQBH: "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/rootDoc"
             android:textColor="@color/text_light"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:text="NGhị quyết số 05 "
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -83,5 +83,13 @@
             android:text="16:30"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <Button
+            android:text="Duyệt"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnActionDoc"
+            android:background="@drawable/radius_button_account"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
     </LinearLayout>
 </LinearLayout>

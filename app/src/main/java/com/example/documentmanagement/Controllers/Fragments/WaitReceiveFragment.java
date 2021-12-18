@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -92,7 +93,7 @@ public class WaitReceiveFragment  extends Fragment {
     private void setListView() {
         documentArrayList = new ArrayList<>();
         documentArrayList.add(new Document("s","s","s","s","s"));
-        approvedReceiveAdapter = new Document_Adapter(documentArrayList,WaitReceiveFragment.this);
+        approvedReceiveAdapter = new Document_Adapter(documentArrayList,WaitReceiveFragment.this,"Duyệt");
         listView.setAdapter(approvedReceiveAdapter);
 
     }

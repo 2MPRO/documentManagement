@@ -35,10 +35,10 @@ public class ViewpagerSendAdapter extends FragmentStatePagerAdapter {
         String title ="";
         switch (position){
             case 0:
-                title ="Chờ Duyệt";
+                title ="Chờ Gửi";
                 break;
             case 1:
-                title ="Đã Duyệt";
+                title ="Đã Gửi";
                 break;
             default:
                 title ="Chờ Duyệt";

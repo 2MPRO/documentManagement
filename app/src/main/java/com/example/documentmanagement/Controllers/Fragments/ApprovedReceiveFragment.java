@@ -49,9 +49,7 @@ public class ApprovedReceiveFragment extends Fragment {
        mapping();
        setListView();
        loaddata();
-
        return view;
-
     }
 
     private void loaddata() {
@@ -91,7 +89,7 @@ public class ApprovedReceiveFragment extends Fragment {
     private void setListView() {
         documentArrayList = new ArrayList<>();
         documentArrayList.add(new Document("s","s","s","s","s"));
-        approvedReceiveAdapter = new Document_Adapter(documentArrayList,ApprovedReceiveFragment.this);
+        approvedReceiveAdapter = new Document_Adapter(documentArrayList,ApprovedReceiveFragment.this,"no");
         listView.setAdapter(approvedReceiveAdapter);
     }
 

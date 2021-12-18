@@ -84,7 +84,7 @@ public class ApprovedSendFragment  extends Fragment {
     private void setListView() {
         documentArrayList = new ArrayList<>();
         documentArrayList.add(new Document("s","s","s","s","s"));
-        document_adapter = new Document_Adapter(documentArrayList,ApprovedSendFragment.this);
+        document_adapter = new Document_Adapter(documentArrayList,ApprovedSendFragment.this,"Thu hồi");
         listView.setAdapter(document_adapter);
 
     }
