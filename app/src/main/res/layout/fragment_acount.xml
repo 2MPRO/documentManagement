@@ -16,7 +16,7 @@
     <Button
         android:enabled="false"
         android:id="@+id/btn_PhanQuyen"
-        android:layout_width="290dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
@@ -27,7 +27,7 @@
 
     <Button
         android:id="@+id/btn_QuanLy"
-        android:layout_width="290dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
@@ -37,14 +37,26 @@
         android:background="@drawable/radius_button_account"/>
 
     <Button
-        android:id="@+id/btn_ChinhSua"
-        android:layout_width="290dp"
+        android:id="@+id/btn_ThongTinTK"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
-        android:text="Chỉnh sửa tài khoản"
+        android:text="Thông tin tài khoản"
         android:textSize="16sp"
         android:textColor="@color/white"
+        android:background="@drawable/radius_button_account"/>
+
+    <Button
+        android:id="@+id/btn_DangXuat"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Đăng xuất"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/noclick"
         android:background="@drawable/radius_button_account"/>
 
 </LinearLayout>
