@@ -6,42 +6,71 @@
     android:orientation="horizontal"
     android:weightSum="3"
     android:layout_margin="20dp"
+    android:paddingBottom="20dp"
+    android:paddingTop= "20dp"
     >
     <LinearLayout
         android:orientation="vertical"
-        android:layout_weight="2"
+        android:layout_weight="2.4"
         android:layout_width="0dp"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     <TextView
+
         android:id="@+id/txtNameDoc"
         android:textSize="20sp"
         android:textColor="@color/text"
         android:text="NGhị quyết số 05 "
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="wrap_content">
     </TextView>
-    <TextView
-        android:id="@+id/numDoc"
-        android:textColor="@color/text"
-        android:textSize="18sp"
-        android:text="NGhị quyết số 05 "
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số: "
+                />
+            <TextView
+                android:id="@+id/numDoc"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:text="NGhị quyết số 05 "
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+
+            </TextView>
+        </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-    </TextView>
-    <TextView
-        android:id="@+id/rootDoc"
-        android:textColor="@color/text_light"
-        android:textSize="18sp"
-        android:text="NGhị quyết số 05 "
-        android:layout_width="match_parent"
-        android:layout_height="30dp">
-    </TextView>
+        android:orientation="horizontal"
+        android:layout_height="60dp">
+        <TextView
+            android:textColor="@color/text_light"
+            android:textSize="18sp"
+            android:text="CQBH: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/rootDoc"
+            android:textColor="@color/text_light"
+            android:textSize="18sp"
+            android:text="NGhị quyết số 05 "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+    </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
-        android:layout_weight="1"
+        android:layout_weight="0.6"
         android:gravity="center"
-
         android:layout_width="0dp"
         android:layout_height="100dp">
         <TextView

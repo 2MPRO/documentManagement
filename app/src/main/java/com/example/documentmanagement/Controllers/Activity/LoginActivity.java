@@ -42,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView imgEye;
     private String user;
     private String pass;
+    public static String iduser;
+    public static String idRoom;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +99,8 @@ public class LoginActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response);
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
                             jsonObject = jsonArray.getJSONObject(0);
+                          //  iduser = String.valueOf( jsonObject.getInt("idNguoiDung"));
+                            idRoom = String.valueOf( jsonObject.getInt("idPhongBan"));
                             User use = new User(jsonObject.getString("taiKhoan").trim(), jsonObject.getString("hoten").trim(), jsonObject.getString("matkhau").trim(), String.valueOf(jsonObject.getInt("idPhongBan")).trim(), jsonObject.getString("tenPhongBan").trim(), jsonObject.getString("ngaysinh").trim(), jsonObject.getString("gioitinh").trim(), jsonObject.getString("diachi").trim());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             Log.d("email", " " + user);
