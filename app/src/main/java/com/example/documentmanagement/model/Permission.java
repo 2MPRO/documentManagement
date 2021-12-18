@@ -20,6 +20,9 @@ public class Permission {
         this.permissionName = permissionName;
     }
 
+    public Permission() {
+    }
+
     public Permission(String idPermission, String permissionName) {
         this.idPermission = idPermission;
         this.permissionName = permissionName;

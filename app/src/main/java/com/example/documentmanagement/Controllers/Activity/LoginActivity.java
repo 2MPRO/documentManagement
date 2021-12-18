@@ -24,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.documentmanagement.R;
+import com.example.documentmanagement.model.Permission;
 import com.example.documentmanagement.model.User;
 import com.example.documentmanagement.util.Server;
 
@@ -32,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private String pass;
     public static String iduser;
     public static String idRoom;
+    public static ArrayList<Permission> permissionArrayList = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,11 +100,15 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         if (!response.contains("failure")) {
                             JSONArray jsonArray = new JSONArray(response);
-                            JSONObject jsonObject = jsonArray.getJSONObject(0);
-                            jsonObject = jsonArray.getJSONObject(0);
+                            JSONObject jsonObject;
+                            User use = null;
+                            for(int i=0;i<jsonArray.length();i++){
+                            jsonObject = jsonArray.getJSONObject(i);
                           //  iduser = String.valueOf( jsonObject.getInt("idNguoiDung"));
-                            idRoom = String.valueOf( jsonObject.getInt("idPhongBan"));
-                            User use = new User(jsonObject.getString("taiKhoan").trim(), jsonObject.getString("hoten").trim(), jsonObject.getString("matkhau").trim(), String.valueOf(jsonObject.getInt("idPhongBan")).trim(), jsonObject.getString("tenPhongBan").trim(), jsonObject.getString("ngaysinh").trim(), jsonObject.getString("gioitinh").trim(), jsonObject.getString("diachi").trim());
+                                idRoom = String.valueOf( jsonObject.getInt("idPhongBan"));
+                                permissionArrayList.add(new Permission(String.valueOf( jsonObject.getInt("idQuyen")),"noSelect"));
+                                use = new User(jsonObject.getString("taiKhoan").trim(), jsonObject.getString("hoten").trim(), jsonObject.getString("matkhau").trim(), String.valueOf(jsonObject.getInt("idPhongBan")).trim(), jsonObject.getString("tenPhongBan").trim(), jsonObject.getString("ngaysinh").trim(), jsonObject.getString("gioitinh").trim(), jsonObject.getString("diachi").trim());
+                            }
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             Log.d("email", " " + user);
                             intent.putExtra("user", use);
