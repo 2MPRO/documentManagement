@@ -2,10 +2,13 @@ package com.example.documentmanagement.Controllers.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editpass;
     private EditText edituser;
     private Button buttonLogin;
+    private ImageView imgEye;
     private String user;
     private String pass;
     public static String iduser;
@@ -45,8 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mapping();
-
         setbuttonLogin();
+        setButtonEye();
+
     }
 
     private void setbuttonLogin() {
@@ -58,10 +63,26 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void setButtonEye() {
+        imgEye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(editpass.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    editpass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    imgEye.setImageResource(R.drawable.eye_hiddent);
+                }else {
+                    editpass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    imgEye.setImageResource(R.drawable.eye_visibility);
+                }
+            }
+        });
+    }
+
     private void mapping() {
         buttonLogin = findViewById(R.id.btnDangNhap);
-        editpass = findViewById(R.id.txtAcc);
-        edituser = findViewById(R.id.imgPass);
+        edituser = findViewById(R.id.txtAcc);
+        editpass = findViewById(R.id.imgPass);
+        imgEye = findViewById(R.id.hide_password_1);
     }
 
     public void login(){
