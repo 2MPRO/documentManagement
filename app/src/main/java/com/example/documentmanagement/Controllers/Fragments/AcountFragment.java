@@ -27,7 +27,6 @@ public class AcountFragment extends Fragment {
         mapping();
         SignOut();
 
-
         return view;
     }
 
