@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#194288"
+    android:id="@+id/activity_login"
     android:weightSum="40">
 
     <LinearLayout
@@ -68,6 +69,7 @@
                 android:id="@+id/imgLock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
                 android:src="@drawable/lock"/>
             <EditText
                 android:id="@+id/imgPass"
@@ -77,6 +79,12 @@
                 android:hint="Mật Khẩu"
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/hide_password_1"
+                android:layout_width="22dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@drawable/eye_hiddent"/>
         </LinearLayout>
     </LinearLayout>
 
