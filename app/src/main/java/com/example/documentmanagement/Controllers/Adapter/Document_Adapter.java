@@ -70,6 +70,7 @@ public class Document_Adapter extends BaseAdapter {
         }
         Document document =documentArrayList.get(position);
         viewHolder.txtDocName.setText( document.getDocName());
+        viewHolder.txtDocNum.setText( document.getDocNum());
         viewHolder.txtDocRoot.setText(document.getDocRoot());
         viewHolder.txtHour.setText(document.getHour());
         viewHolder.txtDate.setText(document.getDate());

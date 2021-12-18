@@ -14,6 +14,7 @@
         android:src="@drawable/ic_user"/>
 
     <Button
+        android:enabled="false"
         android:id="@+id/btn_PhanQuyen"
         android:layout_width="290dp"
         android:layout_height="50dp"

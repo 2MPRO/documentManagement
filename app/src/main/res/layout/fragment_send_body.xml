@@ -5,15 +5,20 @@
     android:orientation="vertical"
     >
     <SearchView
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/search_send"
         android:background="#F4EFEF"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 
     <ListView
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/listView_send"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
+
 </LinearLayout>
