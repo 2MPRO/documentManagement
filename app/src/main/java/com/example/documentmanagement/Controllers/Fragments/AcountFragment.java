@@ -49,9 +49,7 @@ public class AcountFragment extends Fragment {
                 btnManager.setVisibility(View.VISIBLE);
             }
         }
-
     }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

@@ -2,12 +2,9 @@ package com.example.documentmanagement.Controllers.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,17 +13,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.documentmanagement.Controllers.Adapter.PhotoViewpager2Adapter;
 import com.example.documentmanagement.Controllers.Adapter.ViewpagerAdapter;
-import com.example.documentmanagement.Controllers.animation.ZoomOutPageTransformer;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Permission;
-import com.example.documentmanagement.model.PhoTo;
 import com.example.documentmanagement.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,9 +25,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import me.relex.circleindicator.CircleIndicator3;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,8 +52,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         btnAddDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),AddDocumentActivity.class);
+                Intent intent = new Intent(MainActivity.this,AddDocumentActivity.class);
                 startActivity(intent);
+
             }
         });
     }

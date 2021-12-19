@@ -8,4 +8,9 @@ public class Server {
     public static String LinkshowReceiveWait = "http://" + localhost + "/phpcodeDocumentMNG/getreceiveawait.php" ;
     public static String LinkshowSendWait = "http://" + localhost + "/phpcodeDocumentMNG/getsendwait.php" ;
 
+    public static String LinkShowAllRom = "http://" + localhost + "/phpcodeDocumentMNG/getallroom.php" ;
+    public static String LinkinsertDoccument = "http://" + localhost + "/phpcodeDocumentMNG/insertDoccument.php" ;
+
+
+
 }

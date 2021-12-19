@@ -29,12 +29,11 @@
             android:text="Nơi nhận : " />
 
         <Spinner
-            android:background="@color/light_gray"
-            android:id="@+id/spnCategory"
+            android:background="@color/transparent"
+            android:id="@+id/spnRecipients"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_width="150dp"
-            android:layout_height="50dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout
@@ -72,12 +71,26 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnSave"
-        android:text="Gửi"
-        android:background="@drawable/radius_button_account"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:layout_width="100dp"
-        android:layout_height="50dp"/>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btnSavetmp"
+            android:text="Soạn"
+            android:background="@drawable/radius_button_account"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="50dp"/>
+        <Button
+            android:id="@+id/btnSend"
+            android:text="Gửi"
+            android:background="@drawable/radius_button_account"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+
 </LinearLayout>
