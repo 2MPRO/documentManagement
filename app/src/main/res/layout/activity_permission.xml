@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chức vụ: Văn thư"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <ListView
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chức vụ: Quản trị"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <ListView

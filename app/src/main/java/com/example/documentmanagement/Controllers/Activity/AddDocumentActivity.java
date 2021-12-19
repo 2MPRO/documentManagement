@@ -233,6 +233,9 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
             }
         });
     }
+<<<<<<< HEAD
+
+=======
     public void  insertData(){
         RequestQueue requestQueue  = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.LinkinsertDoccument,
@@ -271,6 +274,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         };
         requestQueue.add(stringRequest);
     }
+>>>>>>> d3647e53226668de90a4fde8d7a4a517a8d114c7
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void  getdatetimeCurrent(){

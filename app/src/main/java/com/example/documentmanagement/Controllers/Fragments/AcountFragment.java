@@ -15,7 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.documentmanagement.Controllers.Activity.AccountInformationActivity;
+import com.example.documentmanagement.Controllers.Activity.AccountManagerActivity;
 import com.example.documentmanagement.Controllers.Activity.LoginActivity;
+import com.example.documentmanagement.Controllers.Activity.PermissionActivity;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Permission;
 
@@ -28,8 +31,11 @@ public class AcountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view   = inflater.inflate(R.layout.fragment_acount,container,false);
         mapping();
-        SignOut();
         setShowHiden();
+        ButtonPermission();
+        ButtonManager();
+        ButtonAccount();
+        ButtonSignOut();
         return view;
     }
 
@@ -56,15 +62,44 @@ public class AcountFragment extends Fragment {
         Log.e("Đang on   :","fragment acount");
     }
 
-    private void SignOut() {            // Đăng xuất
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
+    private void ButtonPermission() {         // Phân quyền
+        btnPermission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(getActivity(), LoginActivity.class);
+                Intent intent1 = new Intent(getActivity(), PermissionActivity.class);
                 startActivity(intent1);
             }
         });
+    }
 
+    private void ButtonManager() {            // Quản lý tài khoản
+        btnManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(getActivity(), AccountManagerActivity.class);
+                startActivity(intent2);
+            }
+        });
+    }
+
+    private void ButtonAccount() {             // Thông tin tài khoản
+        btnAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent3 = new Intent(getActivity(), AccountInformationActivity.class);
+                startActivity(intent3);
+            }
+        });
+    }
+
+    private void ButtonSignOut() {            // Đăng xuất
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent4 = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent4);
+            }
+        });
     }
 
     private void mapping() {            // Ánh xạ

@@ -20,9 +20,27 @@
         <activity
             android:name=".Controllers.Activity.AddDocumentActivity"
             android:exported="false" />
+
         <activity
             android:name=".Controllers.Activity.DocumentDetailActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".Controllers.Activity.PermissionActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Controllers.Activity.AccountManagerActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Controllers.Activity.AddAccountActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Controllers.Activity.AccountInformationActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".Controllers.Activity.LoginActivity"
             android:exported="true">
