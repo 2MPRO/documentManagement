@@ -51,6 +51,7 @@
         android:orientation="horizontal"
         android:layout_height="60dp">
         <TextView
+            android:id="@+id/txtRecipients"
             android:textColor="@color/text_light"
             android:textSize="15sp"
             android:text="CQBH: "

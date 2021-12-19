@@ -2,7 +2,6 @@ package com.example.documentmanagement.Controllers.Fragments;
 
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.idRoom;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,7 +58,7 @@ public class ApprovedSendFragment  extends Fragment {
                     String docId, docName, docNum, date, hour,docRoot;
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        docId = jsonObject.getString("idVBN");
+                        docId = jsonObject.getString("idVBD");
                         docName = jsonObject.getString("tenVB");
                         docNum = jsonObject.getString("soHieu");
                         date = jsonObject.getString("ngayBanHanh");

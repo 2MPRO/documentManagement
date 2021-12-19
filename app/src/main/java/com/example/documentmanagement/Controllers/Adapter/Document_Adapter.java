@@ -1,31 +1,24 @@
 package com.example.documentmanagement.Controllers.Adapter;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.os.Bundle;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.documentmanagement.Controllers.Activity.MainActivity;
-import com.example.documentmanagement.Controllers.Fragments.WaitSendFragment;
+import com.example.documentmanagement.Controllers.Activity.DocumentDetailActivity;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Document;
 
 import java.util.ArrayList;
 
 public class Document_Adapter extends BaseAdapter {
+
     ArrayList<Document> documentArrayList;
     Fragment activity;
     String btn_action;
@@ -41,8 +34,9 @@ public class Document_Adapter extends BaseAdapter {
     }
     private class ViewHolder{
         Button btnActionDoc;
-        TextView txtDocName, txtDocNum, txtDocRoot, txtDate, txtHour;
+        TextView txtDocName, txtDocNum, txtDocRoot, txtDate, txtHour,txtRecipients;
         LinearLayout linearLayout;
+
     }
     @Override
     public Object getItem(int position) {
@@ -68,12 +62,20 @@ public class Document_Adapter extends BaseAdapter {
             viewHolder.txtHour = convertView.findViewById(R.id.txtHour);
             viewHolder.txtDate = convertView.findViewById(R.id.txtDate);
             viewHolder.btnActionDoc = convertView.findViewById(R.id.btnActionDoc);
+            viewHolder.txtRecipients = convertView.findViewById(R.id.txtRecipients);
             convertView.setTag(viewHolder);
         }
         else
         {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity.getActivity(), DocumentDetailActivity.class);
+                activity.startActivity(intent);
+            }
+        });
         Document document =documentArrayList.get(position);
         viewHolder.txtDocName.setText( document.getDocName());
         viewHolder.txtDocNum.setText( document.getDocNum());
@@ -82,12 +84,17 @@ public class Document_Adapter extends BaseAdapter {
         viewHolder.txtDate.setText(document.getDate());
         if(btn_action!="no"){
             viewHolder.btnActionDoc.setText(btn_action);
+            if(btn_action!="Duyệt"){
+                viewHolder.txtRecipients.setText("CQN: ");
+            }
+
         }
         else{
             viewHolder.btnActionDoc.setVisibility(View.INVISIBLE);
         }
 
-
         return convertView;
     }
+
+
 }
