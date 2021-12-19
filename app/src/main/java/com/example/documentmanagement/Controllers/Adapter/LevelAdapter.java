@@ -1,6 +1,6 @@
 package com.example.documentmanagement.Controllers.Adapter;
 
-import static com.example.documentmanagement.Controllers.Activity.AddDocumentActivity.idRecipient;
+import static com.example.documentmanagement.Controllers.Activity.AddDocumentActivity.idLevel;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,39 +13,39 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.documentmanagement.R;
-import com.example.documentmanagement.model.Room;
+import com.example.documentmanagement.model.Level;
 
 import java.util.List;
 
-public class RoomAdapter extends ArrayAdapter<Room> {
+public class LevelAdapter extends ArrayAdapter<Level> {
 
-    public RoomAdapter(@NonNull Context context, int resource, @NonNull List<Room> objects) {
+    public LevelAdapter(@NonNull Context context, int resource, @NonNull List<Level> objects) {
         super(context, resource, objects);
     }
 
     @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+@Override
+public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_selected,parent,false);
         TextView txt_select_recipient =convertView.findViewById(R.id.txt_select_recipient);
-        Room room = this.getItem(position);
-        if(room!=null){
-            idRecipient = room.getIdRoom();
-            txt_select_recipient.setText(room.getRoomName());
+        Level level = this.getItem(position);
+        if(level!=null){
+            idLevel = level.getIdLevel();
+            txt_select_recipient.setText(level.getLevelName());
         }
         return convertView;
-    }
+        }
 
-    @Override
-    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+@Override
+public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipients,parent,false);
         TextView txtRecipients =convertView.findViewById(R.id.txtRecipients);
-        Room room = this.getItem(position);
-        if(room!=null){
-            idRecipient = room.getIdRoom();
-            txtRecipients.setText(room.getRoomName());
+            Level level = this.getItem(position);
+        if(level!=null){
+            idLevel = level.getIdLevel();
+        txtRecipients.setText(level.getLevelName());
         }
 
         return convertView;
-    }
+        }
 }

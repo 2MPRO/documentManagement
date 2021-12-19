@@ -37,7 +37,6 @@ public class AccountManagerActivity extends AppCompatActivity {
 
     private void mapping() {
         lvQuanTri = findViewById(R.id.lv_QuanTri_Acc);
-        lvVanThu = findViewById(R.id.lv_VanThu_Acc);
         btnThem = findViewById(R.id.btn_ThemMoi);
     }
 
