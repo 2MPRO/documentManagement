@@ -130,45 +130,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
             }
         });
     }
-    public void  insertData(){
-        RequestQueue requestQueue  = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.LinkinsertDoccument,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if(response.trim().equals("ok")){
-                            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
 
-                            // gọi lại hàm load thông
-
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(),"Cập nhật không thành công",Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-
-            }
-        } ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> param = new HashMap<>();
-                param.put("id",String.valueOf(idUser));
-                param.put("name",edname.getText().toString().trim());
-                param.put("email",edemail.getText().toString().trim());
-                param.put("ngaySinh",eddate.getText().toString().trim());
-                param.put("diaChi",edaddress.getText().toString().trim());
-                param.put("soDienThoai",edphone.getText().toString().trim());
-
-                return param;
-            }
-        };
-        requestQueue.add(stringRequest);
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void  getdatetimeCurrent(){

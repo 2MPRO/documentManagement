@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.documentmanagement.Controllers.Activity.AccountInformationActivity;
 import com.example.documentmanagement.Controllers.Activity.AccountManagerActivity;
 import com.example.documentmanagement.Controllers.Activity.LoginActivity;
 import com.example.documentmanagement.Controllers.Activity.PermissionActivity;
@@ -30,10 +31,11 @@ public class AcountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view   = inflater.inflate(R.layout.fragment_acount,container,false);
         mapping();
+        setShowHiden();
         ButtonPermission();
         ButtonManager();
+        ButtonAccount();
         ButtonSignOut();
-        setShowHiden();
         return view;
     }
 
@@ -76,6 +78,16 @@ public class AcountFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent2 = new Intent(getActivity(), AccountManagerActivity.class);
                 startActivity(intent2);
+            }
+        });
+    }
+
+    private void ButtonAccount() {             // Thông tin tài khoản
+        btnAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent3 = new Intent(getActivity(), AccountInformationActivity.class);
+                startActivity(intent3);
             }
         });
     }
