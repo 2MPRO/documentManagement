@@ -233,48 +233,44 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
             }
         });
     }
-<<<<<<< HEAD
 
-=======
-    public void  insertData(){
-        RequestQueue requestQueue  = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,Server.LinkinsertDoccument,
+    public void  insertData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.LinkinsertDoccument,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(response.trim().equals("success")){
-                            Toast.makeText(getApplicationContext(),"Đã thêm vào văn bản đi",Toast.LENGTH_SHORT).show();
+                        if (response.trim().equals("success")) {
+                            Toast.makeText(getApplicationContext(), "Đã thêm vào văn bản đi", Toast.LENGTH_SHORT).show();
 
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(),"Cập nhật không thành công",Toast.LENGTH_SHORT).show();
-                            Log.e("queeyyy",response);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
+                            Log.e("queeyyy", response);
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
 
             }
-        } ){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<>();
-                param.put("idPhongBan",idRoom);
-                param.put("idNoiDen",idRecipient);
-                param.put("idLoaiVanBan",idDoctype);
-                param.put("idMucDo",idLevel);
-                param.put("noiDung",edit_content.getText().toString().trim());
-                param.put("ngayBanHanh",date);
-                param.put("gioBanHanh",hour);
-                param.put("tenVanBan",edit_Title.getText().toString().trim());
+                param.put("idPhongBan", idRoom);
+                param.put("idNoiDen", idRecipient);
+                param.put("idLoaiVanBan", idDoctype);
+                param.put("idMucDo", idLevel);
+                param.put("noiDung", edit_content.getText().toString().trim());
+                param.put("ngayBanHanh", date);
+                param.put("gioBanHanh", hour);
+                param.put("tenVanBan", edit_Title.getText().toString().trim());
                 return param;
             }
         };
         requestQueue.add(stringRequest);
     }
->>>>>>> d3647e53226668de90a4fde8d7a4a517a8d114c7
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void  getdatetimeCurrent(){
