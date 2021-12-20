@@ -1,10 +1,8 @@
 package com.example.documentmanagement.Controllers.Fragments;
 
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.idRoom;
-import static com.example.documentmanagement.Controllers.Activity.LoginActivity.iduser;
 
 import android.annotation.SuppressLint;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,6 +59,7 @@ public class ApprovedReceiveFragment extends Fragment {
             public void onResponse(JSONArray response) {
                 for(int i=0;i<response.length();i++){
                     String docId, docName, docNum, date, hour,docRoot;
+                    String docRoot2, dinhKem,loaiVanBan, mucDo, noiDung;
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
                         docId = jsonObject.getString("idVBN");
@@ -69,7 +68,15 @@ public class ApprovedReceiveFragment extends Fragment {
                         date = jsonObject.getString("ngayBanHanh");
                         hour = jsonObject.getString("gioBanHanh");
                         docRoot = jsonObject.getString("tenPhongBan");
-                        documentArrayList.add(new Document(docName,docNum,date,hour,docRoot));
+
+                        docRoot2 = jsonObject.getString("docRoot2");
+                        Log.e("docroot2",docRoot2);
+                        dinhKem  = jsonObject.getString("dinhKem");
+                        loaiVanBan = jsonObject.getString("loaiVanBan");
+                        mucDo = jsonObject.getString("mucDo");
+                        noiDung = jsonObject.getString("noiDung");
+
+                        documentArrayList.add(new Document(docId,docName,docNum,date,hour,docRoot,docRoot2,dinhKem,loaiVanBan,mucDo,noiDung));
                         approvedReceiveAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -88,7 +95,6 @@ public class ApprovedReceiveFragment extends Fragment {
 
     private void setListView() {
         documentArrayList = new ArrayList<>();
-        documentArrayList.add(new Document("s","s","s","s","s"));
         approvedReceiveAdapter = new Document_Adapter(documentArrayList,ApprovedReceiveFragment.this,"no");
         listView.setAdapter(approvedReceiveAdapter);
     }

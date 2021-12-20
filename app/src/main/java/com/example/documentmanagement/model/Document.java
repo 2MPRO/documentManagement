@@ -1,26 +1,34 @@
 package com.example.documentmanagement.model;
 
-public class Document {
+import java.io.Serializable;
+
+public class Document implements Serializable {
     private String DocId;
     private String DocName;
     private String DocNum;
     private String Date;
     private String hour;
     private String docRoot;
-    public Document(String docName, String docNum, String date, String hour, String docRoot) {
+    private String docRoot2;
+    private String DinhKem;
+    private String  loaiVanBan;
+    private String  mucDo;
+    private String  noiDung;
+
+
+    public Document(String docId, String docName, String docNum, String date, String hour, String docRoot, String docRoot2, String dinhKem, String loaiVanBan, String mucDo, String noiDung) {
+        this.DocId = docId;
         this.DocName = docName;
         this.DocNum = docNum;
         this.Date = date;
         this.hour = hour;
         this.docRoot = docRoot;
-    }
+        this.docRoot2 = docRoot2;
+        this.DinhKem = dinhKem;
 
-    public String getDocRoot() {
-        return docRoot;
-    }
-
-    public void setDocRoot(String docRoot) {
-        this.docRoot = docRoot;
+        this.loaiVanBan = loaiVanBan;
+        this.mucDo = mucDo;
+        this.noiDung = noiDung;
     }
 
     public String getDocId() {
@@ -63,5 +71,52 @@ public class Document {
         this.hour = hour;
     }
 
+    public String getDocRoot() {
+        return docRoot;
+    }
 
+    public void setDocRoot(String docRoot) {
+        this.docRoot = docRoot;
+    }
+
+    public String getDocRoot2() {
+        return docRoot2;
+    }
+
+    public void setDocRoot2(String docRoot2) {
+        this.docRoot2 = docRoot2;
+    }
+
+    public String getDinhKem() {
+        return DinhKem;
+    }
+
+    public void setDinhKem(String dinhKem) {
+        this.DinhKem = dinhKem;
+    }
+
+
+    public String getLoaiVanBan() {
+        return loaiVanBan;
+    }
+
+    public void setLoaiVanBan(String loaiVanBan) {
+        this.loaiVanBan = loaiVanBan;
+    }
+
+    public String getMucDo() {
+        return mucDo;
+    }
+
+    public void setMucDo(String mucDo) {
+        this.mucDo = mucDo;
+    }
+
+    public String getNoiDung() {
+        return noiDung;
+    }
+
+    public void setNoiDung(String noiDung) {
+        this.noiDung = noiDung;
+    }
 }

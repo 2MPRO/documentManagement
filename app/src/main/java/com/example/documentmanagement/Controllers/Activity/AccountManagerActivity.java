@@ -24,7 +24,6 @@ public class AccountManagerActivity extends AppCompatActivity {
         ButtonThemMoi();
 
     }
-
     private void ButtonThemMoi() {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +33,6 @@ public class AccountManagerActivity extends AppCompatActivity {
             }
         });
     }
-
     private void mapping() {
         lvQuanTri = findViewById(R.id.lv_QuanTri_Acc);
         btnThem = findViewById(R.id.btn_ThemMoi);
