@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -20,7 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.documentmanagement.R;
@@ -32,7 +30,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private String pass;
     public static String iduser;
     public static String idRoom;
+    public static User use;
     public static ArrayList<Permission> permissionArrayList = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         mapping();
         setbuttonLogin();
         setButtonEye();
-
     }
 
     private void setbuttonLogin() {
@@ -101,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (!response.contains("failure")) {
                             JSONArray jsonArray = new JSONArray(response);
                             JSONObject jsonObject;
-                            User use = null;
+
                             for(int i=0;i<jsonArray.length();i++){
                             jsonObject = jsonArray.getJSONObject(i);
                           //  iduser = String.valueOf( jsonObject.getInt("idNguoiDung"));

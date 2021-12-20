@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -59,6 +58,7 @@ public class WaitReceiveFragment  extends Fragment {
             public void onResponse(JSONArray response) {
                 for(int i= 0;i<response.length();i++){
                     String docId, docName, docNum, date, hour,docRoot;
+                    String docRoot2, dinhKem,loaiVanBan, mucDo, noiDung;
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
                         docId = jsonObject.getString("idVBN");
@@ -67,7 +67,12 @@ public class WaitReceiveFragment  extends Fragment {
                         date = jsonObject.getString("ngayBanHanh");
                         hour = jsonObject.getString("gioBanHanh");
                         docRoot = jsonObject.getString("tenPhongBan");
-                        documentArrayList.add(new Document(docName,docNum,date,hour,docRoot));
+                        docRoot2 = jsonObject.getString("docRoot2");
+                        dinhKem  = jsonObject.getString("dinhKem");
+                        loaiVanBan = jsonObject.getString("loaiVanBan");
+                        mucDo = jsonObject.getString("mucDo");
+                        noiDung = jsonObject.getString("noiDung");
+                        documentArrayList.add(new Document(docId,docName,docNum,date,hour,docRoot,docRoot2,dinhKem,loaiVanBan,mucDo,noiDung));
                         approvedReceiveAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -92,7 +97,7 @@ public class WaitReceiveFragment  extends Fragment {
     }
     private void setListView() {
         documentArrayList = new ArrayList<>();
-        documentArrayList.add(new Document("s","s","s","s","s"));
+
         approvedReceiveAdapter = new Document_Adapter(documentArrayList,WaitReceiveFragment.this,"Duyệt");
         listView.setAdapter(approvedReceiveAdapter);
 

@@ -2,6 +2,7 @@ package com.example.documentmanagement.Controllers.Activity;
 
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.idRoom;
 
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import com.example.documentmanagement.Controllers.Adapter.LevelAdapter;
 import com.example.documentmanagement.Controllers.Adapter.RoomAdapter;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Doctype;
+import com.example.documentmanagement.model.Document;
 import com.example.documentmanagement.model.Level;
 import com.example.documentmanagement.model.Room;
 import com.example.documentmanagement.util.Server;
@@ -63,6 +65,8 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
     public static String idRecipient; // id nơi đến đã chọn trong combobox
     public static String idLevel;
     public static String idDoctype;
+    public boolean aBoolean;
+    public Document document;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,12 +76,37 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         setRoomSpinner();
         setDocTypeSpinner();
         setLevelSpinner();
+
+        //kiểm tra tồn tại dữ liệu truyền qua Intent
+        if(isExistIntent()){
+            aBoolean = true;
+        }
+        else
+        {
+            aBoolean = false;
+        };
+        Log.d("aBoolean",isExistIntent().toString());
+
         loaddataRoom();
         loaddataDocType();
         loaddataLevel();
         setBtnSend();
 
     }
+
+    private Boolean isExistIntent() {
+        Intent intent = getIntent();
+        document = (Document) intent.getSerializableExtra("document");
+        if(document!=null){
+            edit_Title.setText(document.getDocName());
+            edit_content.setText(document.getNoiDung());
+            return  true;
+
+        }
+        return false;
+    }
+
+
     private void mapping() {
         spinner = findViewById(R.id.spnRecipients);
         spnLevel = findViewById(R.id.spnLevel);
@@ -99,7 +128,6 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), roomAdapter.getItem(position).getRoomName(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -140,14 +168,22 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(Request.Method.GET, Server.LinkShowAllRom+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+
                 for(int i= 0;i<response.length();i++){
                     String idRoom, roomName;
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        idRoom = jsonObject.getString("idphongban");
+                        idRoom = jsonObject.getString("idPhongBan");
                         roomName = jsonObject.getString("tenPhongBan");
+                        if(aBoolean && roomName.equals(document.getDocRoot2())){
+                            listRoom.add(0,new Room(idRoom,roomName));
+                            Log.d("document : ",document.getDocRoot2());
+                        }
+                        else
+                        {
+                            listRoom.add(new Room(idRoom,roomName));
+                        }
 
-                        listRoom.add(new Room(idRoom,roomName));
                         roomAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -176,8 +212,14 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                         JSONObject jsonObject = response.getJSONObject(i);
                         idDocType = jsonObject.getString("idLVB");
                         typeName = jsonObject.getString("tenLoai");
+                        if(aBoolean && typeName.equals(document.getLoaiVanBan())){
+                            listDoctype.add(0,new Doctype(idDocType,typeName));
+                        }
+                        else
+                        {
+                            listDoctype.add(new Doctype(idDocType,typeName));
+                        }
 
-                        listDoctype.add(new Doctype(idDocType,typeName));
                         docTypeAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -206,8 +248,15 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                         JSONObject jsonObject = response.getJSONObject(i);
                         idLevel = jsonObject.getString("idMucDo");
                         levelName = jsonObject.getString("tenMucDo");
-                        listLevel.add(new Level(idLevel,levelName));
+                        if(aBoolean && levelName.equals(document.getMucDo())){
+                            listLevel.add(0,new Level(idLevel,levelName));
+                        }
+                        else
+                        {
+                            listLevel.add(new Level(idLevel,levelName));
+                        }
                         levelAdapter.notifyDataSetChanged();
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -266,6 +315,9 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                 param.put("ngayBanHanh", date);
                 param.put("gioBanHanh", hour);
                 param.put("tenVanBan", edit_Title.getText().toString().trim());
+                if(aBoolean){
+                    param.put("acTion", document.getDocId());
+                }
                 return param;
             }
         };
@@ -275,17 +327,21 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void  getdatetimeCurrent(){
         Calendar cal = Calendar.getInstance();
-
         int year = cal.get(Calendar.YEAR);
         int dayofmonth = cal.get(Calendar.DAY_OF_MONTH);
         int month = cal.get(Calendar.MONTH);
         int hourofday = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
-
         date = String.valueOf(dayofmonth)+"/"+String.valueOf(month+1)+"/"+String.valueOf(year);
         hour = String.valueOf(hourofday) + ":" + String.valueOf(minute);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.documentmanagement.Controllers.Activity.AddDocumentActivity;
 import com.example.documentmanagement.Controllers.Activity.DocumentDetailActivity;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Document;
@@ -69,13 +70,7 @@ public class Document_Adapter extends BaseAdapter {
         {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity.getActivity(), DocumentDetailActivity.class);
-                activity.startActivity(intent);
-            }
-        });
+
         Document document =documentArrayList.get(position);
         viewHolder.txtDocName.setText( document.getDocName());
         viewHolder.txtDocNum.setText( document.getDocNum());
@@ -86,13 +81,28 @@ public class Document_Adapter extends BaseAdapter {
             viewHolder.btnActionDoc.setText(btn_action);
             if(btn_action!="Duyệt"){
                 viewHolder.txtRecipients.setText("CQN: ");
+                viewHolder.txtDocRoot.setText(document.getDocRoot2());
             }
-
         }
         else{
             viewHolder.btnActionDoc.setVisibility(View.INVISIBLE);
         }
-
+        viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn_action!="Gửi"){
+                    Intent intent = new Intent(activity.getActivity(), DocumentDetailActivity.class);
+                    intent.putExtra("document",document);
+                    activity.startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(activity.getActivity(), AddDocumentActivity.class);
+                    intent.putExtra("document",document);
+                    activity.startActivity(intent);
+                }
+            }
+        });
         return convertView;
     }
 
