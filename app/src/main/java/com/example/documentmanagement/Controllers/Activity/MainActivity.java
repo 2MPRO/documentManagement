@@ -1,5 +1,7 @@
 package com.example.documentmanagement.Controllers.Activity;
 
+import static com.example.documentmanagement.Controllers.Activity.LoginActivity.use;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,20 +17,26 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.documentmanagement.Controllers.Adapter.ViewpagerAdapter;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Permission;
 import com.example.documentmanagement.model.User;
+import com.example.documentmanagement.util.Server;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
 
     private DrawerLayout drawerLayout; //layout chứa navigationview
     private NavigationView navigationview;
@@ -78,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setNavigationView() {
         navigationview.setNavigationItemSelectedListener(this);
+
     }
 
     private void setDrawerToggle() {
@@ -215,4 +224,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
              super.onBackPressed();
     }
+
+
 }

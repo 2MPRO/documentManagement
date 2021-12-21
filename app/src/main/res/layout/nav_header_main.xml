@@ -24,11 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Phạm Văn Thiên"
+        android:text="Họ và tên"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="vanthien.dev@gmail.com" />
+        android:text="Hoten.dev@gmail.com" />
 </LinearLayout>

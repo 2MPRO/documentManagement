@@ -25,12 +25,12 @@
         <EditText
             android:fontFamily="@font/serif"
             android:textSize="16sp"
-            android:id="@+id/edt_tk_sdt"
+            android:id="@+id/edt_tk_gt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:background="@drawable/border_edit_tk"
-            android:hint="Số điện thoại"
+            android:hint="Giới tính"
             android:padding="10dp" />
 
         <EditText

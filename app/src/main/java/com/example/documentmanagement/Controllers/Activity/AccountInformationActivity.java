@@ -13,22 +13,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.documentmanagement.R;
 
 public class AccountInformationActivity extends AppCompatActivity {
-    EditText etHoTen, etSDT, etMail, etNgay, etDiaChi;
+    EditText etHoTen, etGioiTinh, etMail, etNgay, etDiaChi;
     Button btnCapNhat;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String uuu = use.get
         setContentView(R.layout.activity_account_information);
-
-
+        mapping();
+        GetAccount();
     }
 
     private void mapping() {
         etHoTen = findViewById(R.id.edt_tk_ht);
-        etSDT = findViewById(R.id.edt_tk_sdt);
+        etGioiTinh = findViewById(R.id.edt_tk_gt);
         etMail = findViewById(R.id.edt_tk_em);
+        etNgay = findViewById(R.id.edt_tk_ngsinh);
+        etDiaChi = findViewById(R.id.edt_tk_dchi);
+        btnCapNhat = findViewById(R.id.btnUpdate);
+    }
+
+    private void GetAccount() {
+        etHoTen.setText(use.getFullName());
+        etGioiTinh.setText(use.getSex());
+        etMail.setText(use.getBirthDay());
+        etNgay.setText(use.getPass());
+        etDiaChi.setText(use.getDiaChi());
     }
 
 }

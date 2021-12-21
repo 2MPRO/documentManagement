@@ -4,6 +4,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/txt_id_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="ID Người dùng"/>
+
+    <TextView
+        android:id="@+id/txt_ho_ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Họ tên"/>
+
+    <TextView
+        android:id="@+id/txt_mk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Mật khẩu"/>
+
+    <TextView
+        android:id="@+id/txt_id_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="ID room"/>
+
+    <TextView
+        android:id="@+id/txt_ten_phong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Tên phòng"/>
+
+    <TextView
+        android:id="@+id/txt_ngay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Ngày sinh"/>
+
+    <TextView
+        android:id="@+id/txt_gioi_tinh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Giới tính"/>
+
+    <TextView
+        android:id="@+id/txt_dia_chi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Địa chỉ"/>
+
 
 
 </LinearLayout>
