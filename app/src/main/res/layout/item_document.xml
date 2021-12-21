@@ -46,26 +46,27 @@
             </TextView>
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="60dp">
-        <TextView
-            android:id="@+id/txtRecipients"
-            android:textColor="@color/text_light"
-            android:textSize="15sp"
-            android:text="CQBH: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/rootDoc"
-            android:textColor="@color/text_light"
-            android:textSize="15sp"
-            android:text="NGhị quyết số 05 "
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </TextView>
-    </LinearLayout>
+            android:layout_height="49dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtRecipients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CQBH: "
+                android:textColor="@color/text_light"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/rootDoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NGhị quyết số 05 "
+                android:textColor="@color/text_light"
+                android:textSize="15sp"></TextView>
+        </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
@@ -89,6 +90,15 @@
             android:textSize="15sp"
             android:layout_marginTop="10dp"
             android:id="@+id/btnActionDoc"
+            android:background="@drawable/radius_button_account"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <Button
+            android:text="Xóa"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnDelete"
+            android:backgroundTint="#E80909"
             android:background="@drawable/radius_button_account"
             android:layout_width="match_parent"
             android:layout_height="30dp"/>

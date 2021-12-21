@@ -12,7 +12,8 @@ public class Server {
     public static String LinkShowAllLevel = "http://" + localhost + "/phpcodeDocumentMNG/getallLevel.php" ;
     public static String LinkShowAllDocType = "http://" + localhost + "/phpcodeDocumentMNG/getAllDocType.php" ;
     public static String LinkinsertDoccument = "http://" + localhost + "/phpcodeDocumentMNG/insertDoccument.php" ;
-
-
+    public static String LinkToRecall= "http://" + localhost + "/phpcodeDocumentMNG/recall.php" ;
+    public static String LinkToConfirm= "http://" + localhost + "/phpcodeDocumentMNG/updateconfirm.php" ;
+    public static String LinkToDeleteDoc= "http://" + localhost + "/phpcodeDocumentMNG/deleteDoc.php" ;
 
 }

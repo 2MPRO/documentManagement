@@ -68,6 +68,7 @@ public class AcountFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent1 = new Intent(getActivity(), PermissionActivity.class);
                 startActivity(intent1);
+
             }
         });
     }
@@ -98,6 +99,9 @@ public class AcountFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent4 = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent4);
+
+                permissionArrayList.clear();
+                getActivity().finish();
             }
         });
     }

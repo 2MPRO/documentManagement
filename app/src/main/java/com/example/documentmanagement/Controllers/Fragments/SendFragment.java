@@ -26,10 +26,11 @@ public class SendFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view   = inflater.inflate(R.layout.fragment_send,container,false);
         mapping();
-
         setTabLayout();
         return view;
     }
+
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -47,7 +48,7 @@ public class SendFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tablayout_send);
         viewPager = view.findViewById(R.id.frag_send_pager);
     }
-    public void reloadData(){
 
-    }
+
+
 }

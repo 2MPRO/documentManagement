@@ -53,7 +53,8 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
     Toolbar toolbar;
     EditText edit_Title, edit_content;
     Spinner spinner, spnLevel, spnDocType;
-    Button btnSend, btnSaveTmp;
+   Button  btnSaveTmp = null;
+   Button btnSend = null;
     List<Room> listRoom = new ArrayList<>();
     List<Doctype> listDoctype = new ArrayList<>();
     List<Level> listLevel = new ArrayList<>();
@@ -67,6 +68,10 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
     public static String idDoctype;
     public boolean aBoolean;
     public Document document;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,8 +96,10 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         loaddataDocType();
         loaddataLevel();
         setBtnSend();
-
+        settmpSavebuton();
     }
+
+
 
     private Boolean isExistIntent() {
         Intent intent = getIntent();
@@ -100,6 +107,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         if(document!=null){
             edit_Title.setText(document.getDocName());
             edit_content.setText(document.getNoiDung());
+            btnSaveTmp.setVisibility(View.GONE);
             return  true;
 
         }
@@ -165,7 +173,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         listRoom.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         Log.e("DCMM :", Server.LinkShowAllRom+"?idRoom="+idRoom);
-        JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(Request.Method.GET, Server.LinkShowAllRom+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Server.LinkShowAllRom+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
@@ -266,10 +274,23 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-
             }
         });
         requestQueue.add(jsonArrayRequest);
+    }
+
+    private void settmpSavebuton() {
+        btnSaveTmp.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                getdatetimeCurrent();
+                insertData("saveTmp");
+                Intent intent = new Intent(AddDocumentActivity.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
     }
     public void setBtnSend() {
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -277,23 +298,29 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
             @Override
             public void onClick(View v) {
                 getdatetimeCurrent();
-                insertData();
+                insertData("save");
 
             }
         });
     }
 
-    public void  insertData() {
+    public void  insertData(String saction) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.LinkinsertDoccument,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (response.trim().equals("success")) {
-                            Toast.makeText(getApplicationContext(), "Đã thêm vào văn bản đi", Toast.LENGTH_SHORT).show();
+                            if(saction.equals("saveTmp")){
+                                Toast.makeText(getApplicationContext(), "Đã thêm vào danh sách chờ gửi", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "Đã gửi văn bản thành công", Toast.LENGTH_SHORT).show();
+                                Log.e("queeyyy", response);
+                            }
 
                         } else {
-                            Toast.makeText(getApplicationContext(), "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Cơ quan đã có văn bản này; Vui lòng chọn phòng ban khác ", Toast.LENGTH_SHORT).show();
                             Log.e("queeyyy", response);
                         }
                     }
@@ -317,6 +344,10 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                 param.put("tenVanBan", edit_Title.getText().toString().trim());
                 if(aBoolean){
                     param.put("acTion", document.getDocId());
+                    param.put("docNum",document.getDocNum());
+                }
+                if(saction.equals("saveTmp")){
+                    param.put("saveTmp","saveTmp");
                 }
                 return param;
             }
@@ -338,8 +369,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+
         super.onBackPressed();
     }
 

@@ -22,7 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.documentmanagement.Controllers.Adapter.Document_Adapter;
+import com.example.documentmanagement.Controllers.Adapter.Document_Wait_Send_Adapter;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Document;
 import com.example.documentmanagement.util.Server;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 public class WaitSendFragment  extends Fragment {
     private View view;
     private ArrayList<Document> documentArrayList;
-    Document_Adapter documentAdapter;
+    private Document_Wait_Send_Adapter documentAdapter;
     private SearchView search_send;
     private ListView listView;
     @Nullable
@@ -46,16 +46,33 @@ public class WaitSendFragment  extends Fragment {
         mapping();
         setListView();
         loaddata();
+        setSearchView();
         return view;
     }
-    private void loaddata() {
+    private void setSearchView() {
+        search_send.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                documentAdapter.getFilter().filter(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                documentAdapter.getFilter().filter(newText);
+
+                return false;
+            }
+        });
+    }
+
+    public void loaddata() {
         documentArrayList.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        Log.e("DCMM :", Server.LinkshowSendWait+"?idRoom="+idRoom);
-        JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(Request.Method.GET, Server.LinkshowSendWait+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Server.LinkshowSendWait+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                for(int i= 0;i<response.length();i++){
+                if(documentArrayList.isEmpty()){
+                for(int i=0;i<response.length();i++){
                     String docId, docName, docNum, date, hour,docRoot;
                     String docRoot2, dinhKem,loaiVanBan, mucDo, noiDung;
                     try {
@@ -67,34 +84,32 @@ public class WaitSendFragment  extends Fragment {
                         hour = jsonObject.getString("gioBanHanh");
                         docRoot = jsonObject.getString("tenPhongBan");
                         docRoot2 = jsonObject.getString("docRoot2");
-
                         dinhKem  = jsonObject.getString("dinhKem");
                         loaiVanBan = jsonObject.getString("loaiVanBan");
                         mucDo = jsonObject.getString("mucDo");
                         noiDung = jsonObject.getString("noiDung");
-
                         documentArrayList.add(new Document(docId,docName,docNum,date,hour,docRoot,docRoot2,dinhKem,loaiVanBan,mucDo,noiDung));
                         documentAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity().getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-
             }
         });
         requestQueue.add(jsonArrayRequest);
+        documentAdapter.notifyDataSetChanged();
     }
     private void setListView() {
         documentArrayList = new ArrayList<>();
 
-        documentAdapter = new Document_Adapter(documentArrayList,WaitSendFragment.this,"Gửi");
+        documentAdapter = new Document_Wait_Send_Adapter(documentArrayList,WaitSendFragment.this,"Gửi");
         listView.setAdapter(documentAdapter);
-
     }
     private void mapping() {
         search_send =  view.findViewById(R.id.search_send);
@@ -105,4 +120,12 @@ public class WaitSendFragment  extends Fragment {
         super.onAttach(context);
         Log.e("Đang on   :","fragment send_wait");
     }
+
+    @Override
+    public void onResume(){
+        loaddata();
+        documentAdapter.notifyDataSetChanged();
+        super.onResume();
+    }
+
 }

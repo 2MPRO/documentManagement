@@ -23,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.documentmanagement.Controllers.Adapter.Document_Adapter;
+import com.example.documentmanagement.Controllers.Adapter.Document_Wait_Receive_Adapter;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Document;
 import com.example.documentmanagement.util.Server;
@@ -39,7 +39,7 @@ public class WaitReceiveFragment  extends Fragment {
     private SearchView search_receive;
     private ListView listView;
     private ArrayList<Document> documentArrayList;
-    private Document_Adapter approvedReceiveAdapter;
+    private Document_Wait_Receive_Adapter approvedReceiveAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,35 +47,54 @@ public class WaitReceiveFragment  extends Fragment {
         mapping();
         setListView();
         loaddata();
+        setSearchView();
         return view;
     }
-    private void loaddata() {
+    private void setSearchView() {
+        search_receive.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                approvedReceiveAdapter.getFilter().filter(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                approvedReceiveAdapter.getFilter().filter(newText);
+
+                return false;
+            }
+        });
+    }
+
+
+    public void loaddata() {
         documentArrayList.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        Log.e("DCMM :", Server.LinkshowReceiveWait+"?idRoom="+idRoom);
         JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(Request.Method.GET, Server.LinkshowReceiveWait+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                for(int i= 0;i<response.length();i++){
-                    String docId, docName, docNum, date, hour,docRoot;
-                    String docRoot2, dinhKem,loaiVanBan, mucDo, noiDung;
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        docId = jsonObject.getString("idVBN");
-                        docName = jsonObject.getString("tenVB");
-                        docNum = jsonObject.getString("soHieu");
-                        date = jsonObject.getString("ngayBanHanh");
-                        hour = jsonObject.getString("gioBanHanh");
-                        docRoot = jsonObject.getString("tenPhongBan");
-                        docRoot2 = jsonObject.getString("docRoot2");
-                        dinhKem  = jsonObject.getString("dinhKem");
-                        loaiVanBan = jsonObject.getString("loaiVanBan");
-                        mucDo = jsonObject.getString("mucDo");
-                        noiDung = jsonObject.getString("noiDung");
-                        documentArrayList.add(new Document(docId,docName,docNum,date,hour,docRoot,docRoot2,dinhKem,loaiVanBan,mucDo,noiDung));
-                        approvedReceiveAdapter.notifyDataSetChanged();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                if (documentArrayList.isEmpty()) {
+                    for (int i = 0; i < response.length(); i++) {
+                        String docId, docName, docNum, date, hour, docRoot;
+                        String docRoot2, dinhKem, loaiVanBan, mucDo, noiDung;
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            docId = jsonObject.getString("idVBN");
+                            docName = jsonObject.getString("tenVB");
+                            docNum = jsonObject.getString("soHieu");
+                            date = jsonObject.getString("ngayBanHanh");
+                            hour = jsonObject.getString("gioBanHanh");
+                            docRoot = jsonObject.getString("tenPhongBan");
+                            docRoot2 = jsonObject.getString("docRoot2");
+                            dinhKem = jsonObject.getString("dinhKem");
+                            loaiVanBan = jsonObject.getString("loaiVanBan");
+                            mucDo = jsonObject.getString("mucDo");
+                            noiDung = jsonObject.getString("noiDung");
+                            documentArrayList.add(new Document(docId, docName, docNum, date, hour, docRoot, docRoot2, dinhKem, loaiVanBan, mucDo, noiDung));
+                            approvedReceiveAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -87,6 +106,7 @@ public class WaitReceiveFragment  extends Fragment {
             }
         });
         requestQueue.add(jsonArrayRequest);
+        approvedReceiveAdapter.notifyDataSetChanged();
     }
     @SuppressLint("ResourceAsColor")
     public void mapping(){
@@ -97,8 +117,7 @@ public class WaitReceiveFragment  extends Fragment {
     }
     private void setListView() {
         documentArrayList = new ArrayList<>();
-
-        approvedReceiveAdapter = new Document_Adapter(documentArrayList,WaitReceiveFragment.this,"Duyệt");
+        approvedReceiveAdapter = new Document_Wait_Receive_Adapter(documentArrayList,WaitReceiveFragment.this,"Duyệt");
         listView.setAdapter(approvedReceiveAdapter);
 
     }
@@ -107,4 +126,14 @@ public class WaitReceiveFragment  extends Fragment {
         super.onAttach(context);
         Log.e("Đang on   :","fragment receive_wait");
     }
+
+    @Override
+    public void onResume() {
+        loaddata();
+        approvedReceiveAdapter.notifyDataSetChanged();
+        super.onResume();
+
+    }
+
+
 }
