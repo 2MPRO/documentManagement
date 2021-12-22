@@ -49,6 +49,7 @@ public class WaitSendFragment  extends Fragment {
         setSearchView();
         return view;
     }
+
     private void setSearchView() {
         search_send.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -59,13 +60,13 @@ public class WaitSendFragment  extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 documentAdapter.getFilter().filter(newText);
-
                 return false;
             }
         });
     }
 
     public void loaddata() {
+        setSearchView();
         documentArrayList.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Server.LinkshowSendWait+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {

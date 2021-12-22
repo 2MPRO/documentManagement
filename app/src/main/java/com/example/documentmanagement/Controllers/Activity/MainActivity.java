@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Mapping();
         initView();
         setbtnAdd();
+        setTextnavigation();
     }
 
     private void setbtnAdd() {
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AddDocumentActivity.class);
                 startActivity(intent);
-
             }
         });
     }
@@ -77,9 +77,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationview = findViewById(R.id.nav_view);
         btnAddDoc = findViewById(R.id.btnaddDocument);
-        userName = findViewById(R.id.userName);
-        txtRoom = findViewById(R.id.txtRoom);
+    }
+    public void setTextnavigation(){
 
+        View headerView = navigationview.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.userName);
+        txtRoom = headerView.findViewById(R.id.txtRoom);
+        navUsername.setText(use.getFullName());
+        txtRoom.setText(use.getRoomName());
     }
     public void initView( ){
         setUpViewPager();

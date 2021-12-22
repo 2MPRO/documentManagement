@@ -38,17 +38,6 @@ public class Document_Approved_send_Adapter extends BaseAdapter {
         this.btn_action = btn_action;
         this.documentArrayListTMP = documentArrayList;
     }
-
-    @Override
-    public int getCount() {
-        return documentArrayList.size();
-    }
-    private class ViewHolder{
-        Button btnActionDoc,btnDelete;
-        TextView txtDocName, txtDocNum, txtDocRoot, txtDate, txtHour,txtRecipients;
-        LinearLayout linearLayout;
-
-    }
     public Filter getFilter() {
 
         return new Filter() {
@@ -79,6 +68,17 @@ public class Document_Approved_send_Adapter extends BaseAdapter {
             }
         };
     }
+    @Override
+    public int getCount() {
+        return documentArrayList.size();
+    }
+    private class ViewHolder{
+        Button btnActionDoc,btnDelete;
+        TextView txtDocName, txtDocNum, txtDocRoot, txtDate, txtHour,txtRecipients;
+        LinearLayout linearLayout;
+
+    }
+
 
     @Override
     public Object getItem(int position) {

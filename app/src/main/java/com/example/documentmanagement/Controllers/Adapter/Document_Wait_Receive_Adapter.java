@@ -40,14 +40,6 @@ public class Document_Wait_Receive_Adapter extends BaseAdapter implements Filter
         this.btn_action = btn_action;
         this.documentArrayListTMP= documentArrayList;
     }
-
-    @Override
-    public int getCount() {
-        return documentArrayList.size();
-    }
-
-
-
     @Override
     public Filter getFilter() {
 
@@ -79,6 +71,14 @@ public class Document_Wait_Receive_Adapter extends BaseAdapter implements Filter
             }
         };
     }
+    @Override
+    public int getCount() {
+        return documentArrayList.size();
+    }
+
+
+
+
 
     private class ViewHolder {
 
