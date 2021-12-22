@@ -20,8 +20,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.documentmanagement.Controllers.Adapter.Document_Wait_Send_Adapter;
 import com.example.documentmanagement.Controllers.Adapter.User_Adapter;
 import com.example.documentmanagement.Controllers.Fragments.ApprovedSendFragment;
+import com.example.documentmanagement.Controllers.Fragments.WaitSendFragment;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.User;
 import com.example.documentmanagement.util.Server;
@@ -35,12 +37,11 @@ import java.util.ArrayList;
 public class AccountManagerActivity extends AppCompatActivity {
 
     ArrayList<User> listUser;
-    User_Adapter adapter;
+    User_Adapter UserAdapter;
 
     ListView lv_DS_TaiKhoan;
     Button btnThem;
 
-   String urlGet = "http://192.168.1.118/phpcodeDocumentMNG/getListAccount.php";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,20 +51,26 @@ public class AccountManagerActivity extends AppCompatActivity {
 
 //        listUser = new ArrayList<>();
 //        adapter = new User_Adapter(this, R.layout.item_user, listUser);
-        lv_DS_TaiKhoan.setAdapter(adapter);
+
 
         LoadData();
-
+        setListView();
         ButtonThemMoi();
 
     }
 
+    private void setListView() {
+        listUser = new ArrayList<>();
+
+        UserAdapter = new User_Adapter(AccountManagerActivity.this, R.layout.item_user, listUser);
+        lv_DS_TaiKhoan.setAdapter(UserAdapter);
+    }
 
     private void LoadData() {
         //listUser.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         //Log.e("DCMM :", Server.LinkToLogin+"?idNguoiDung="+iduser);
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.LinkToLogin,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.LinkgetListAccount,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -99,8 +106,8 @@ public class AccountManagerActivity extends AppCompatActivity {
 //                                 object.getString("diachi")
 //                                ));
 
-                                listUser.add(new User(idUser, fullName, pass, idRoom, roomName, birthDay, sex, diaChi));
-                                adapter.notifyDataSetChanged();
+                                listUser.add(new User(idUser, fullName, pass, idRoom, roomName, birthDay, sex, diaChi, "image"));
+                                UserAdapter.notifyDataSetChanged();
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

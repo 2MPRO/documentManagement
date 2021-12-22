@@ -45,7 +45,7 @@ public class User_Adapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        TextView idDung, HoTen, idPass, idRoom, tenPhong, ngaySinh, gioiTinh, diaChi;
+        TextView HoTen, tenPhong;
     }
 
     @Override
@@ -55,14 +55,10 @@ public class User_Adapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(layout, null);
-            holder.idDung = (TextView) view.findViewById(R.id.txt_id_user);
-            holder.HoTen = (TextView) view.findViewById(R.id.txt_ho_ten);
-            holder.idPass = (TextView) view.findViewById(R.id.txt_mk);
-            holder.idRoom = (TextView) view.findViewById(R.id.txt_id_room);
-            holder.tenPhong = (TextView) view.findViewById(R.id.txt_ten_phong);
-            holder.ngaySinh = (TextView) view.findViewById(R.id.txt_ngay);
-            holder.gioiTinh = (TextView) view.findViewById(R.id.txt_gioi_tinh);
-            holder.diaChi = (TextView) view.findViewById(R.id.txt_dia_chi);
+            holder.HoTen = (TextView) view.findViewById(R.id.txt_hienthi_ten);
+
+            holder.tenPhong = (TextView) view.findViewById(R.id.txt_hienthi_phong);
+
             view.setTag(holder);
         }
         else {
@@ -70,14 +66,8 @@ public class User_Adapter extends BaseAdapter {
         }
 
         User user = userList.get(position);
-        holder.idDung.setText(user.getIdUser());
         holder.HoTen.setText(user.getFullName());
-        holder.idPass.setText(user.getPass());
-        holder.idRoom.setText(user.getIdRoom());
         holder.tenPhong.setText(user.getRoomName());
-        holder.ngaySinh.setText(user.getBirthDay());
-        holder.gioiTinh.setText(user.getSex());
-        holder.diaChi.setText(user.getDiaChi());
 
         return view;
     }

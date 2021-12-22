@@ -11,8 +11,9 @@ public class User implements Serializable {
     private String birthDay;
     private String sex;
     private String diaChi;
+    private String img;
 
-    public User(String idUser, String fullName, String pass, String idRoom, String roomName, String birthDay, String sex, String diaChi) {
+    public User(String idUser, String fullName, String pass, String idRoom, String roomName, String birthDay, String sex, String diaChi, String img) {
         this.idUser = idUser;
         this.fullName = fullName;
         this.pass = pass;
@@ -21,6 +22,7 @@ public class User implements Serializable {
         this.birthDay = birthDay;
         this.sex = sex;
         this.diaChi = diaChi;
+        this.img = img;
     }
 
     public String getIdUser() {
@@ -85,5 +87,13 @@ public class User implements Serializable {
 
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

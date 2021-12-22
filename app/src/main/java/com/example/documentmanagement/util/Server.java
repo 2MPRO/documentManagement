@@ -16,4 +16,8 @@ public class Server {
     public static String LinkToConfirm= "http://" + localhost + "/phpcodeDocumentMNG/updateconfirm.php" ;
     public static String LinkToDeleteDoc= "http://" + localhost + "/phpcodeDocumentMNG/deleteDoc.php" ;
 
+
+    public static String LinkgetListAccount = "http://" + localhost + "/phpcodeDocumentMNG/getListAccount.php" ;
+
+
 }

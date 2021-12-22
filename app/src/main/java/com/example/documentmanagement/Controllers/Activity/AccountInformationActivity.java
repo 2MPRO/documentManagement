@@ -8,11 +8,14 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.example.documentmanagement.R;
 
 public class AccountInformationActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
     EditText etHoTen, etGioiTinh, etMail, etNgay, etDiaChi;
     Button btnCapNhat;
 
@@ -22,6 +25,7 @@ public class AccountInformationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_account_information);
         mapping();
+        setToolbar();
         GetAccount();
     }
 
@@ -32,6 +36,13 @@ public class AccountInformationActivity extends AppCompatActivity {
         etNgay = findViewById(R.id.edt_tk_ngsinh);
         etDiaChi = findViewById(R.id.edt_tk_dchi);
         btnCapNhat = findViewById(R.id.btnUpdate);
+        toolbar = findViewById(R.id.toolbar);
+    }
+
+    private void setToolbar() {
+        toolbar.setTitle("Thông tin cá nhân");
+        toolbar.setTitleTextColor(this.getResources().getColor(R.color.white));
+        setSupportActionBar(toolbar);
     }
 
     private void GetAccount() {
