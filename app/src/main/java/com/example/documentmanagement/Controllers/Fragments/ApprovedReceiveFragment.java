@@ -23,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.documentmanagement.Controllers.Adapter.Document_Adapter;
+import com.example.documentmanagement.Controllers.Adapter.Document_Approved_Receive_Adapter;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.Document;
 import com.example.documentmanagement.util.Server;
@@ -39,7 +39,7 @@ public class ApprovedReceiveFragment extends Fragment {
     private SearchView search_receive;
     private ListView listView;
     private ArrayList<Document> documentArrayList;
-    private Document_Adapter approvedReceiveAdapter;
+    private Document_Approved_Receive_Adapter approvedReceiveAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,39 +47,56 @@ public class ApprovedReceiveFragment extends Fragment {
        mapping();
        setListView();
        loaddata();
-       return view;
+        setSearchView();
+        return view;
+    }
+    private void setSearchView() {
+        search_receive.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                approvedReceiveAdapter.getFilter().filter(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                approvedReceiveAdapter.getFilter().filter(newText);
+
+                return false;
+            }
+        });
     }
 
-    private void loaddata() {
+    public void loaddata() {
         documentArrayList.clear();
+
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        Log.e("DCMM :",Server.LinkshowApprovedReceive+"?idRoom="+idRoom);
         JsonArrayRequest jsonArrayRequest =new JsonArrayRequest(Request.Method.GET, Server.LinkshowApprovedReceive+"?idRoom="+idRoom, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                for(int i=0;i<response.length();i++){
-                    String docId, docName, docNum, date, hour,docRoot;
-                    String docRoot2, dinhKem,loaiVanBan, mucDo, noiDung;
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        docId = jsonObject.getString("idVBN");
-                        docName = jsonObject.getString("tenVB");
-                        docNum = jsonObject.getString("soHieu");
-                        date = jsonObject.getString("ngayBanHanh");
-                        hour = jsonObject.getString("gioBanHanh");
-                        docRoot = jsonObject.getString("tenPhongBan");
+                if(documentArrayList.isEmpty()) {
+                    for (int i = 0; i < response.length(); i++) {
+                        String docId, docName, docNum, date, hour, docRoot;
+                        String docRoot2, dinhKem, loaiVanBan, mucDo, noiDung;
+                        try {
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            docId = jsonObject.getString("idVBN");
+                            docName = jsonObject.getString("tenVB");
+                            docNum = jsonObject.getString("soHieu");
+                            date = jsonObject.getString("ngayBanHanh");
+                            hour = jsonObject.getString("gioBanHanh");
+                            docRoot = jsonObject.getString("tenPhongBan");
 
-                        docRoot2 = jsonObject.getString("docRoot2");
-                        Log.e("docroot2",docRoot2);
-                        dinhKem  = jsonObject.getString("dinhKem");
-                        loaiVanBan = jsonObject.getString("loaiVanBan");
-                        mucDo = jsonObject.getString("mucDo");
-                        noiDung = jsonObject.getString("noiDung");
-
-                        documentArrayList.add(new Document(docId,docName,docNum,date,hour,docRoot,docRoot2,dinhKem,loaiVanBan,mucDo,noiDung));
-                        approvedReceiveAdapter.notifyDataSetChanged();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            docRoot2 = jsonObject.getString("docRoot2");
+                            Log.e("docroot2", docRoot2);
+                            dinhKem = jsonObject.getString("dinhKem");
+                            loaiVanBan = jsonObject.getString("loaiVanBan");
+                            mucDo = jsonObject.getString("mucDo");
+                            noiDung = jsonObject.getString("noiDung");
+                            documentArrayList.add(new Document(docId, docName, docNum, date, hour, docRoot, docRoot2, dinhKem, loaiVanBan, mucDo, noiDung));
+                            approvedReceiveAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -91,11 +108,12 @@ public class ApprovedReceiveFragment extends Fragment {
             }
         });
             requestQueue.add(jsonArrayRequest);
+            approvedReceiveAdapter.notifyDataSetChanged();
     }
 
     private void setListView() {
         documentArrayList = new ArrayList<>();
-        approvedReceiveAdapter = new Document_Adapter(documentArrayList,ApprovedReceiveFragment.this,"no");
+        approvedReceiveAdapter = new Document_Approved_Receive_Adapter(documentArrayList,ApprovedReceiveFragment.this,"no");
         listView.setAdapter(approvedReceiveAdapter);
     }
 
@@ -108,5 +126,12 @@ public class ApprovedReceiveFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         Log.e("Đang on   :","fragment receive_approved");
+    }
+
+    @Override
+    public void onResume() {
+        loaddata();
+        approvedReceiveAdapter.notifyDataSetChanged();
+        super.onResume();
     }
 }

@@ -20,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.documentmanagement.Controllers.Adapter.Document_Adapter;
 import com.example.documentmanagement.Controllers.Adapter.User_Adapter;
 import com.example.documentmanagement.Controllers.Fragments.ApprovedSendFragment;
 import com.example.documentmanagement.R;

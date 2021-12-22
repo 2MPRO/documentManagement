@@ -17,8 +17,6 @@ import com.example.documentmanagement.Controllers.Adapter.ViewpagerReceiveAdapte
 import com.example.documentmanagement.R;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.IOException;
-
 public class ReceviFragment extends Fragment {
 
     private TabLayout tabLayout;
@@ -46,6 +44,9 @@ public class ReceviFragment extends Fragment {
         viewPager.setAdapter(viewpagerReceiveAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
+
+
+
 
     private void mapping() {
         tabLayout = view.findViewById(R.id.tablayout_receive);

@@ -111,7 +111,6 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("user", use);
                             startActivity(intent);
                             finish();
-                            Log.e("QB", "onResponse: " + response);
                         } else {
                             Toast.makeText(LoginActivity.this, "Nhập sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                         }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FloatingActionButton btnAddDoc;
     public static ArrayList<User> userArrayList;
     public static ArrayList<Permission> permissionArrayList;
+    TextView userName, txtRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationview = findViewById(R.id.nav_view);
         btnAddDoc = findViewById(R.id.btnaddDocument);
+        userName = findViewById(R.id.userName);
+        txtRoom = findViewById(R.id.txtRoom);
+
     }
     public void initView( ){
         setUpViewPager();
@@ -135,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void setUpViewPager(){
         ViewpagerAdapter viewpagerAdapter = new ViewpagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewpagerAdapter);
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -172,8 +178,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
-
-
 
 
     //  pause slider when  out app
