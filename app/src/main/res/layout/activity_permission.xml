@@ -4,57 +4,45 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="40">
-
+    android:weightSum="5">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     <ImageView
         android:id="@+id/imgPermission"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/logo_document"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_shield"
         android:layout_gravity="center"/>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_weight="4"
         android:layout_height="0dp"
-        android:layout_weight="15"
-        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtVanThu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chức vụ: Văn thư"
+            android:text="Danh sách phòng ban - quyền : "
             android:textSize="20sp"
             android:textStyle="bold"/>
 
-        <ListView
-            android:id="@+id/lv_VanThu_Per"
+        <ExpandableListView
+
+            android:scrollbars="none"
+            android:divider="@color/primary"
+            android:dividerHeight="0.5dp"
+            android:id="@+id/ExpandableListView_permission"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="0dp"
-        android:layout_weight="15"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txtQuanTri"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Chức vụ: Quản trị"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        <ListView
-            android:id="@+id/lv_QuanTri_Per"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <Button
