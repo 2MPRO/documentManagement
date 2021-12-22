@@ -125,11 +125,13 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         edit_content = findViewById(R.id.edit_content);
         edit_Title = findViewById(R.id.edit_Title);
     }
+
     private void setToolbar() {
         toolbar.setTitle("Thêm văn bản");
         toolbar.setTitleTextColor(this.getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
     }
+
     private void setRoomSpinner() {
         roomAdapter = new RoomAdapter(this,R.layout.item_selected,listRoom);
         spinner.setAdapter(roomAdapter);
