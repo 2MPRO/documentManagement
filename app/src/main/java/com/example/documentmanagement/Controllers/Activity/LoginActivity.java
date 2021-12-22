@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                           //  iduser = String.valueOf( jsonObject.getInt("idNguoiDung"));
                                 idRoom = String.valueOf( jsonObject.getInt("idPhongBan"));
                                 permissionArrayList.add(new Permission(String.valueOf( jsonObject.getInt("idQuyen")),"noSelect"));
-                                use = new User(jsonObject.getString("taiKhoan").trim(), jsonObject.getString("hoten").trim(), jsonObject.getString("matkhau").trim(), String.valueOf(jsonObject.getInt("idPhongBan")).trim(), jsonObject.getString("tenPhongBan").trim(), jsonObject.getString("ngaysinh").trim(), jsonObject.getString("gioitinh").trim(), jsonObject.getString("diachi").trim());
+                                use = new User(jsonObject.getString("taiKhoan").trim(), jsonObject.getString("hoten").trim(), jsonObject.getString("matkhau").trim(), String.valueOf(jsonObject.getInt("idPhongBan")).trim(), jsonObject.getString("tenPhongBan").trim(), jsonObject.getString("ngaysinh").trim(), jsonObject.getString("gioitinh").trim(), jsonObject.getString("diachi").trim(), "Image");
                             }
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             Log.d("email", " " + user);
