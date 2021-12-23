@@ -48,11 +48,6 @@ public class AccountManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_manager);
         mapping();
-
-//        listUser = new ArrayList<>();
-//        adapter = new User_Adapter(this, R.layout.item_user, listUser);
-
-
         LoadData();
         setListView();
         ButtonThemMoi();
@@ -95,16 +90,6 @@ public class AccountManagerActivity extends AppCompatActivity {
                                     sex = object.getString("gioitinh");
                                     diaChi = object.getString("diachi");
 
-//                                listUser.add(new User(
-//                                        object.getString("idNguoiDung"),
-//                                        object.getString("hoten"),
-//                                object.getString("matkhau"),
-//                                object.getString("idPhongBan"),
-//                                 object.getString("tenPhongBan"),
-//                                object.getString("ngaysinh"),
-//                                 object.getString("gioitinh"),
-//                                 object.getString("diachi")
-//                                ));
 
                                 listUser.add(new User(idUser, fullName, pass, idRoom, roomName, birthDay, sex, diaChi, "image"));
                                 UserAdapter.notifyDataSetChanged();
