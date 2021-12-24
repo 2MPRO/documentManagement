@@ -90,6 +90,9 @@ public class PermissionActivity extends AppCompatActivity {
         roomGroup =  new ArrayList<>(listPermissions.keySet());
         expandableListviewAdapter = new ExpandableListviewAdapter(roomGroup,listPermissions,listRoom_Permission);
         ExpandableListView_permission.setAdapter(expandableListviewAdapter);
+        for (int i = 0; i < expandableListviewAdapter.getGroupCount(); i++)
+            ExpandableListView_permission.expandGroup(i);
+
     }
 
     @NonNull
@@ -148,6 +151,7 @@ public class PermissionActivity extends AppCompatActivity {
                         idPermission = jsonObject.getString("idQuyen").trim();
                         permissionName = jsonObject.getString("tenQuyen").trim();
                         lisItemPermission.add(new Permission(idPermission,permissionName));
+                        expandableListviewAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
