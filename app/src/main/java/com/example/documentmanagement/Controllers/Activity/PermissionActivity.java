@@ -262,6 +262,22 @@ public class PermissionActivity extends AppCompatActivity {
         saveChange.clear();
     }
 
+    @Override
+    protected void onStop() {
+        finish();
+        super.onStop();
+    }
+
+    public void onResume() {
+        setlistPermissions();
+        expandableListviewAdapter.notifyDataSetChanged();
+        super.onResume();
+
+    }
+    public void onBackPressed() {
+      finish();
+    }
+
     private void mapping() {
         toolbar = findViewById(R.id.toolbar);
         ExpandableListView_permission = findViewById(R.id.ExpandableListView_permission);
