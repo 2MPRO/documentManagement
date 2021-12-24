@@ -43,9 +43,8 @@ public class AcountFragment extends Fragment {
         //mặt định ẩn chức năng quản lý tài khoản và phân quyền
         btnPermission.setVisibility(View.GONE);
         btnManager.setVisibility(View.GONE);
-
         for(int i=0; i<permissionArrayList.size();i++){
-            Permission permission = new Permission();
+            Permission permission;
             permission = permissionArrayList.get(i);
             if(permission.getIdPermission() == String.valueOf(1)){// quyền thêm sửa xóa
                 //btnPermission.setVisibility(View.VISIBLE);
@@ -56,6 +55,7 @@ public class AcountFragment extends Fragment {
             }
         }
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

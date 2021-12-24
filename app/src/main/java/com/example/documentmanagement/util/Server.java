@@ -18,7 +18,15 @@ public class Server {
 
 
     public static String LinkgetListAccount = "http://" + localhost + "/phpcodeDocumentMNG/getListAccount.php" ;
+
     public static String LinkInsertAccount = "http://" + localhost + "/phpcodeDocumentMNG/insertAccount.php" ;
 
+
+
+    public static String LinkgetRoomGroup = "http://" + localhost + "/phpcodeDocumentMNG/getRoomGroup.php" ;
+    public static String LinkgetPermission = "http://" + localhost + "/phpcodeDocumentMNG/getPermission.php" ;
+    public static String LinkgetRoom_Permission= "http://" + localhost + "/phpcodeDocumentMNG/getRoom_Permission.php" ;
+    public static String LinkdeleteTablePermisson= "http://" + localhost + "/phpcodeDocumentMNG/deletePermission.php" ;
+    public static String LinkInsertTablePermisson= "http://" + localhost + "/phpcodeDocumentMNG/insertPermission.php" ;
 
 }

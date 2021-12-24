@@ -43,7 +43,7 @@ public View getDropDownView(int position, @Nullable View convertView, @NonNull V
             Level level = this.getItem(position);
         if(level!=null){
             idLevel = level.getIdLevel();
-        txtRecipients.setText(level.getLevelName());
+            txtRecipients.setText(level.getLevelName());
         }
 
         return convertView;

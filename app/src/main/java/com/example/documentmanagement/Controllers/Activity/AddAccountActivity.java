@@ -3,13 +3,17 @@ package com.example.documentmanagement.Controllers.Activity;
 import static com.example.documentmanagement.Controllers.Activity.AddDocumentActivity.idRecipient;
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.idRoom;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -37,7 +41,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,21 +80,11 @@ public class AddAccountActivity extends AppCompatActivity {
         setRoomSpinner();
         loaddataRoom();
         setBtnInsert();
+        SelectDate();
+//        HideButtonEye1();
+//        HideButtonEye2();
     }
 
-//    public void getData() {
-//        fullName = etHoTen.getText().toString().trim();
-//        birthDay = etNgaySinh.getText().toString().trim();
-//        sex = etGioi_Tinh.getText().toString().trim();
-//        diaChi = etDiaChi.getText().toString().trim();
-//
-//        roomName = etTaiKhoan.getText().toString().trim();
-//
-//        pass= etMatKhau.getText().toString().trim();
-//        Repass = etNhapLai.getText().toString().trim();
-//
-//        idRoom = idRecipient;
-//    }
 
     private void mapping() {
         etHoTen = findViewById(R.id.etName);
@@ -122,6 +118,63 @@ public class AddAccountActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+    }
+
+    // Lấy ngày, tháng, năm
+    private void setDate() {
+        final Calendar calendar = Calendar.getInstance();
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                calendar.set(i, i1, i2);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                etNgaySinh.setText(simpleDateFormat.format(calendar.getTime()));
+
+            }
+        },date, month, year );
+        datePickerDialog.show();
+    }
+
+    private void SelectDate() {
+        etNgaySinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDate();
+            }
+        });
+    }
+
+    private void HideButtonEye1() {
+        hide_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(etMatKhau.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    etMatKhau.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    hide_1.setImageResource(R.drawable.eye_hiddent);
+                }else {
+                    etMatKhau.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    hide_1.setImageResource(R.drawable.eye_visibility);
+                }
+            }
+        });
+    }
+
+    private void HideButtonEye2() {
+        hide_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(etNhapLai.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    etNhapLai.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    hide_2.setImageResource(R.drawable.eye_hiddent);
+                }else {
+                    etNhapLai.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    hide_2.setImageResource(R.drawable.eye_visibility);
+                }
             }
         });
     }
@@ -165,46 +218,6 @@ public class AddAccountActivity extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
-//    public void insertAccount(String saction) {
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.LinkInsertAccount,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        if (response.trim().equals("success")) {
-//                            if(saction.equals("saveTmp")) {
-//                                Toast.makeText(getApplicationContext(), "ĐÃ THÊM", Toast.LENGTH_SHORT).show();
-//                            }
-//                            else {
-//                                Toast.makeText(getApplicationContext(), "LỖI", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }) {
-////                    @Nullable
-//                    @Override
-//                    protected Map<String, String> getParams() throws AuthFailureError {
-//                        Map<String, String> param = new HashMap<>();
-////                        param.put("idNguoiDung", idUser);
-//
-////                        param.put("idPhongBan", idRoom);
-//                        param.put("hoten", etHoTen.getText().toString().trim());
-//                        param.put("ngaysinh", etNgaySinh.getText().toString().trim());
-//                        param.put("gioitinh", etGioi_Tinh.getText().toString().trim());
-//                        param.put("diachi", etDiaChi.getText().toString().trim());
-//                        param.put("taiKhoan", etTaiKhoan.getText().toString().trim());
-//                        param.put("matkhau", etMatKhau.getText().toString().trim());
-//
-//                        return param;
-//                    }
-//        };
-//        requestQueue.add(stringRequest);
-//    }
 
     public void insertAccount() {
         fullName = etHoTen.getText().toString().trim();
