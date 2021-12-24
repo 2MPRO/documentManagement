@@ -81,8 +81,8 @@ public class AddAccountActivity extends AppCompatActivity {
         loaddataRoom();
         setBtnInsert();
         SelectDate();
-//        HideButtonEye1();
-//        HideButtonEye2();
+        HideButtonEye1();
+        HideButtonEye2();
     }
 
 

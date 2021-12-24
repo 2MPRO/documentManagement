@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">documentManagement</string>
+    <string name="app_name">Quản lý văn bản</string>
 
     <!--action  nav-->
     <string name="action_home">Home</string>
