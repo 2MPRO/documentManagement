@@ -58,7 +58,14 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                user = edituser.getText().toString().trim();
+                pass = editpass.getText().toString().trim();
+                if(user.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    login();
+                }
             }
         });
     }

@@ -3,10 +3,12 @@ package com.example.documentmanagement.Controllers.Activity;
 import static com.example.documentmanagement.Controllers.Activity.AddDocumentActivity.idRecipient;
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.use;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,6 +33,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +49,6 @@ public class AccountInformationActivity extends AppCompatActivity {
     String birthDay;
     String sex;
     String diaChi;
-    String urlUpdate = "http://192.168.1.118/phpcodeDocumentMNG/updateAccount.php" ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +58,7 @@ public class AccountInformationActivity extends AppCompatActivity {
         setToolbar();
         GetAccount();
         ButtonUpdateAccount();
-
+        SelectDate();
     }
 
     private void mapping() {
@@ -103,81 +106,6 @@ public class AccountInformationActivity extends AppCompatActivity {
         });
     }
 
-//    private void update(String url) {
-//        idRoom = idRecipient;
-//        RequestQueue requestQueue  = Volley.newRequestQueue(this);
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        if(response.trim().equals("ok")){
-//                            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
-//
-//                            // gọi lại hàm load thông
-//                            readJson(Server.LinkGetAccount +"?idPhongBan="+ idRoom );
-//                        }
-//                        else {
-//                            Toast.makeText(getApplicationContext(),"Cập nhật không thành công",Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-//
-//            }
-//        } ){
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String, String> param = new HashMap<>();
-//                param.put("idPhongBan",String.valueOf(idRoom));
-//                param.put("hoten",etHoTen.getText().toString().trim());
-//                param.put("ngaysinh",etNgay.getText().toString().trim());
-//                param.put("gioitinh",etGioiTinh.getText().toString().trim());
-//                param.put("diachi",etDiaChi.getText().toString().trim());
-//                param.put("taiKhoan",etTaiKhoan.getText().toString().trim());
-//                param.put("matkhau",etMatKhau.getText().toString().trim());
-//
-//                return param;
-//            }
-//        };
-//        requestQueue.add(stringRequest);
-//    }
-
-//    private void readJson(String url){
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url,null,
-//                new Response.Listener<JSONArray>() {
-//                    @Override
-//                    public void onResponse(JSONArray response) {
-//
-//                        try {
-//                            JSONObject jsonObject = response.getJSONObject(0);
-//                            idRoom = jsonObject.getString("idPhongBan");
-//                            etHoTen.setText(jsonObject.getString("hoten"));
-//                            etNgay.setText(jsonObject.getString("ngaysinh"));
-//                            etGioiTinh.setText(jsonObject.getString("gioitinh"));
-//                            etDiaChi.setText(jsonObject.getString("diachi"));
-//                            etTaiKhoan.setText(jsonObject.getString("taiKhoan"));
-//                            etMatKhau.setText(jsonObject.getString("matkhau"));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                }
-//        );
-//        requestQueue.add(jsonArrayRequest);
-//    }
-
     private void Update() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.LinkUpdateAccount,
@@ -218,6 +146,31 @@ public class AccountInformationActivity extends AppCompatActivity {
     }
 
 
+    // Lấy ngày, tháng, năm
+    private void setDate() {
+        final Calendar calendar = Calendar.getInstance();
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                calendar.set(i, i1, i2);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                etNgay.setText(simpleDateFormat.format(calendar.getTime()));
 
+            }
+        },date, month, year );
+        datePickerDialog.show();
+    }
+
+    private void SelectDate() {
+        etNgay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDate();
+            }
+        });
+    }
 
 }
