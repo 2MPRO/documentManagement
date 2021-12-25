@@ -18,8 +18,9 @@ public class Server {
 
 
     public static String LinkgetListAccount = "http://" + localhost + "/phpcodeDocumentMNG/getListAccount.php" ;
-
     public static String LinkInsertAccount = "http://" + localhost + "/phpcodeDocumentMNG/insertAccount.php" ;
+    public static String LinkUpdateAccount = "http://" + localhost + "/phpcodeDocumentMNG/updateAccount.php" ;
+    public static String LinkGetAccount = "http://" + localhost + "/phpcodeDocumentMNG/getAccount.php" ;
 
 
 

@@ -33,28 +33,6 @@
         <EditText
             android:fontFamily="@font/serif"
             android:textSize="16sp"
-            android:id="@+id/edt_tk_gt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/border_edit_tk"
-            android:hint="Giới tính"
-            android:padding="10dp" />
-
-        <EditText
-            android:fontFamily="@font/serif"
-            android:textSize="16sp"
-            android:id="@+id/edt_tk_em"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/border_edit_tk"
-            android:hint="Email"
-            android:padding="10dp" />
-
-        <EditText
-            android:fontFamily="@font/serif"
-            android:textSize="16sp"
             android:id="@+id/edt_tk_ngsinh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,14 +42,36 @@
             android:padding="10dp" />
 
         <EditText
+            android:fontFamily="@font/serif"
+            android:textSize="16sp"
+            android:id="@+id/edt_tk_gt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/border_edit_tk"
+            android:hint="Giới tính"
+            android:padding="10dp" />
+
+        <EditText
             android:id="@+id/edt_tk_dchi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:background="@drawable/border_edit_tk"
-
             android:hint="Địa chỉ"
             android:padding="10dp" />
+
+        <EditText
+            android:fontFamily="@font/serif"
+            android:textSize="16sp"
+            android:id="@+id/edt_mk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/border_edit_tk"
+            android:hint="Mật khẩu"
+            android:padding="10dp" />
+
         <Button
             android:textSize="18sp"
             android:fontFamily="@font/cucho"
