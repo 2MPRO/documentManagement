@@ -1,7 +1,7 @@
 package com.example.documentmanagement.util;
 
 public class Server {
-    public static String localhost="192.168.1.118";
+    public static String localhost="192.168.43.60";
     public static String LinkToLogin = "http://" + localhost + "/phpcodeDocumentMNG/login.php" ;
     public static String LinkshowApprovedReceive = "http://" + localhost + "/phpcodeDocumentMNG/getreceiveapproved.php" ;
     public static String LinkshowApprovedSend = "http://" + localhost + "/phpcodeDocumentMNG/getpprovedsend.php" ;
@@ -26,7 +26,6 @@ public class Server {
     public static String LinkgetRoomGroup = "http://" + localhost + "/phpcodeDocumentMNG/getRoomGroup.php" ;
     public static String LinkgetPermission = "http://" + localhost + "/phpcodeDocumentMNG/getPermission.php" ;
     public static String LinkgetRoom_Permission= "http://" + localhost + "/phpcodeDocumentMNG/getRoom_Permission.php" ;
-    public static String LinkdeleteTablePermisson= "http://" + localhost + "/phpcodeDocumentMNG/deletePermission.php" ;
     public static String LinkInsertTablePermisson= "http://" + localhost + "/phpcodeDocumentMNG/insertPermission.php" ;
-
+    public static String LinkInsertTableDinhKem= "http://" + localhost + "/phpcodeDocumentMNG/insertPDF.php" ;
 }
