@@ -25,7 +25,6 @@ public class DocumentDetailActivity extends AppCompatActivity {
     Toolbar toolbar;
     Document document;
     Button btn_action;
-    Button btnUpPdf;
     String btn_action_Text;
     TextView edit_Title, edit_content, spnRoot;
     TextView spinner, spnLevel, spnDocType, txtFilePdf;
