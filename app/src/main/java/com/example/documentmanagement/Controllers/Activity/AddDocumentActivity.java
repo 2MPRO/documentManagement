@@ -436,11 +436,16 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                         Toast.makeText(getApplicationContext(), "Bỏ file đính kèm zô", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        getdatetimeCurrent();
-                        insertData("saveTmp");
-                        Intent intent = new Intent(AddDocumentActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        finish();
+                        if(edit_content.getText().toString().isEmpty() ||  edit_Title.getText().toString().isEmpty() ) {
+                            getdatetimeCurrent();
+                            insertData("saveTmp");
+                            Intent intent = new Intent(AddDocumentActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            finish();
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
@@ -457,8 +462,15 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                     Toast.makeText(getApplicationContext(), "Bỏ file đính kèm zô", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    getdatetimeCurrent();
-                    insertData("save");
+                    if(edit_content.getText().toString().isEmpty() ||  edit_Title.getText().toString().isEmpty() ) {
+
+                            getdatetimeCurrent();
+                            insertData("save");
+                        }
+                    else
+                        Toast.makeText(getApplicationContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+
+
                 }
 
 
