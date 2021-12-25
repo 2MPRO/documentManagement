@@ -436,7 +436,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                         Toast.makeText(getApplicationContext(), "Bỏ file đính kèm zô", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        if(edit_content.getText().toString().isEmpty() ||  edit_Title.getText().toString().isEmpty() ) {
+                        if(!edit_content.getText().toString().isEmpty() ||  !edit_Title.getText().toString().isEmpty() ) {
                             getdatetimeCurrent();
                             insertData("saveTmp");
                             Intent intent = new Intent(AddDocumentActivity.this, MainActivity.class);
@@ -462,7 +462,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                     Toast.makeText(getApplicationContext(), "Bỏ file đính kèm zô", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    if(edit_content.getText().toString().isEmpty() ||  edit_Title.getText().toString().isEmpty() ) {
+                    if(!edit_content.getText().toString().isEmpty() ||  !edit_Title.getText().toString().isEmpty() ) {
 
                             getdatetimeCurrent();
                             insertData("save");
