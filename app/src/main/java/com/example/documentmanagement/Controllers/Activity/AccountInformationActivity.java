@@ -2,6 +2,7 @@ package com.example.documentmanagement.Controllers.Activity;
 
 import static com.example.documentmanagement.Controllers.Activity.AddDocumentActivity.idRecipient;
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.use;
+import static com.example.documentmanagement.Controllers.Activity.MainActivity.permissionArrayList;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.documentmanagement.R;
+import com.example.documentmanagement.model.Permission;
 import com.example.documentmanagement.model.User;
 import com.example.documentmanagement.util.Server;
 
@@ -112,8 +114,31 @@ public class AccountInformationActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(response.trim().equals("Success")) {
+                        if(!response.trim().equals("failure")) {
                             Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
+
+                            JSONArray jsonArray = null;
+                            try {
+                                jsonArray = new JSONArray(response);
+                                JSONObject jsonObject;
+
+                                for(int i=0;i<jsonArray.length();i++){
+                                    jsonObject = jsonArray.getJSONObject(i);
+
+                                    permissionArrayList.add(new Permission(String.valueOf( jsonObject.getInt("idQuyen")),"noSelect"));
+                                    use.setIdUser(jsonObject.getString("taiKhoan").trim());
+                                    use.setFullName(jsonObject.getString("hoten").trim());
+                                    use.setPass( jsonObject.getString("matkhau").trim());
+                                    use.setBirthDay(jsonObject.getString("ngaysinh").trim());
+                                    use.setSex(jsonObject.getString("gioitinh").trim());
+                                    use.setDiaChi(jsonObject.getString("diachi").trim());
+
+                                    GetAccount();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                             finish();
                         }
                         else {
