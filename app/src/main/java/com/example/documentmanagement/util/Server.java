@@ -1,7 +1,7 @@
 package com.example.documentmanagement.util;
 
 public class Server {
-    public static String localhost="192.168.43.60";
+    public static String localhost="192.168.1.118";
     public static String LinkToLogin = "http://" + localhost + "/phpcodeDocumentMNG/login.php" ;
     public static String LinkshowApprovedReceive = "http://" + localhost + "/phpcodeDocumentMNG/getreceiveapproved.php" ;
     public static String LinkshowApprovedSend = "http://" + localhost + "/phpcodeDocumentMNG/getpprovedsend.php" ;
@@ -18,8 +18,9 @@ public class Server {
 
 
     public static String LinkgetListAccount = "http://" + localhost + "/phpcodeDocumentMNG/getListAccount.php" ;
-
     public static String LinkInsertAccount = "http://" + localhost + "/phpcodeDocumentMNG/insertAccount.php" ;
+    public static String LinkUpdateAccount = "http://" + localhost + "/phpcodeDocumentMNG/updateAccount.php" ;
+    public static String LinkGetAccount = "http://" + localhost + "/phpcodeDocumentMNG/getAccount.php" ;
 
 
 

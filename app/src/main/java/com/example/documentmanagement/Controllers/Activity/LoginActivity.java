@@ -58,7 +58,14 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                user = edituser.getText().toString().trim();
+                pass = editpass.getText().toString().trim();
+                if(user.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    login();
+                }
             }
         });
     }
@@ -104,7 +111,15 @@ public class LoginActivity extends AppCompatActivity {
                           //  iduser = String.valueOf( jsonObject.getInt("idNguoiDung"));
                                 idRoom = String.valueOf( jsonObject.getInt("idPhongBan"));
                                 permissionArrayList.add(new Permission(String.valueOf( jsonObject.getInt("idQuyen")),"noSelect"));
-                                use = new User(jsonObject.getString("taiKhoan").trim(), jsonObject.getString("hoten").trim(), jsonObject.getString("matkhau").trim(), String.valueOf(jsonObject.getInt("idPhongBan")).trim(), jsonObject.getString("tenPhongBan").trim(), jsonObject.getString("ngaysinh").trim(), jsonObject.getString("gioitinh").trim(), jsonObject.getString("diachi").trim(), "Image");
+                                use = new User(jsonObject.getString("taiKhoan").trim(),
+                                        jsonObject.getString("hoten").trim(),
+                                        jsonObject.getString("matkhau").trim(),
+                                        String.valueOf(jsonObject.getInt("idPhongBan")).trim(),
+                                        jsonObject.getString("tenPhongBan").trim(),
+                                        jsonObject.getString("ngaysinh").trim(),
+                                        jsonObject.getString("gioitinh").trim(),
+                                        jsonObject.getString("diachi").trim(),
+                                        "Image");
                             }
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             Log.d("email", " " + user);

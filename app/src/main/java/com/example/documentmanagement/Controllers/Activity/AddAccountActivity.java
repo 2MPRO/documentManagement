@@ -280,14 +280,25 @@ public class AddAccountActivity extends AppCompatActivity {
         btnThemTK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                getData();
-                insertAccount();
+                fullName = etHoTen.getText().toString().trim();
+                birthDay = etNgaySinh.getText().toString().trim();
+                sex = etGioi_Tinh.getText().toString().trim();
+                diaChi = etDiaChi.getText().toString().trim();
 
+                roomName = etTaiKhoan.getText().toString().trim();
+
+                pass= etMatKhau.getText().toString().trim();
+                Repass = etNhapLai.getText().toString().trim();
+
+                if(fullName.isEmpty() || birthDay.isEmpty() || sex.isEmpty() || diaChi.isEmpty() ||
+                  roomName.isEmpty() || pass.isEmpty() || Repass.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    insertAccount();
+                }
             }
         });
     }
-
-
-
 
 }
