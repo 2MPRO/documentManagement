@@ -25,9 +25,10 @@ public class DocumentDetailActivity extends AppCompatActivity {
     Toolbar toolbar;
     Document document;
     Button btn_action;
+    Button btnUpPdf;
     String btn_action_Text;
     TextView edit_Title, edit_content, spnRoot;
-    TextView spinner, spnLevel, spnDocType;
+    TextView spinner, spnLevel, spnDocType, txtFilePdf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +37,27 @@ public class DocumentDetailActivity extends AppCompatActivity {
         setToolbar();
         getIntentData();
         loadData();
+        setbtnOpenPdf();
+        setbtnUpPdf();
+    }
+
+    private void setbtnUpPdf() {
+
+    }
+
+    private void setbtnOpenPdf() {
+        txtFilePdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DocumentDetailActivity.this, ActivityViewPdf.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void mapping() {
+        txtFilePdf = findViewById(R.id.txtFilePdf);
+
         toolbar = findViewById(R.id.toolbar);
         spinner = findViewById(R.id.spnRecipients);
         spnLevel = findViewById(R.id.spnLevel);

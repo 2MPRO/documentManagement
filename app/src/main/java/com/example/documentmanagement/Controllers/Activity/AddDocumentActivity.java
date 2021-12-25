@@ -2,10 +2,15 @@ package com.example.documentmanagement.Controllers.Activity;
 
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.idRoom;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,12 +18,16 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,6 +52,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,10 +81,14 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
     public static String idDoctype;
     public boolean aBoolean;
     public Document document;
+    public TextView txtFilePdf;
+    private Button btnUpPdf;
+    private  int REQ_PDF = 21;
+    Uri path;
+    private String encodePDF ; //Lưu pdf chuẩn bị up;
 
-
-
-
+    private byte[] pdfInBytes;
+    String  fileName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,24 +98,106 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         setRoomSpinner();
         setDocTypeSpinner();
         setLevelSpinner();
-
+        setbtnUpPdf();
         //kiểm tra tồn tại dữ liệu truyền qua Intent
         if(isExistIntent()){
             aBoolean = true;
+
         }
         else
         {
             aBoolean = false;
         };
-        Log.d("aBoolean",isExistIntent().toString());
-
         loaddataRoom();
         loaddataDocType();
         loaddataLevel();
         setBtnSend();
+        settxtOpenPdf();
         settmpSavebuton();
     }
 
+//    private void setURL() {
+//        try {
+//            pathUrl = new URL(linkDoc);
+//            String  fileName = pathUrl.getPath();
+//            fileName = fileName.substring(fileName.lastIndexOf('/')+1);
+//            txtFilePdf.setText(fileName);
+//            downLoadDoc(fileName);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
+//
+//    private void downLoadDoc(String fileName) {
+//        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(pathUrl.toString()));
+//        request.setTitle(fileName);
+//        request.setMimeType("application/pdf");
+//        request.setAllowedOverMetered(true);
+//        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+//        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,fileName);
+//        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+//        downloadManager.enqueue(request);
+//    }
+
+    private void setbtnUpPdf() {
+        btnUpPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/pdf");
+                intent = Intent.createChooser(intent,"Choose a file");
+                startActivityForResult(intent, REQ_PDF);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQ_PDF && resultCode == RESULT_OK && data != null){
+            path = data.getData();
+            try {
+                InputStream inputStream = AddDocumentActivity.this.getContentResolver().openInputStream(path);
+                byte[] PdfInBytes = new byte[inputStream.available()];
+                inputStream.read(PdfInBytes);
+                encodePDF =   Base64.encodeToString(PdfInBytes,Base64.DEFAULT);
+                fileName = path.toString();
+                fileName = fileName.substring(fileName.lastIndexOf('/')+1);
+                txtFilePdf.setText(fileName);
+
+                Toast.makeText(getApplicationContext(), "Đã thêm file pdf", Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void settxtOpenPdf() {
+        txtFilePdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(aBoolean == true){
+                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+fileName);
+                    Uri uri= FileProvider.getUriForFile(AddDocumentActivity.this, "com.example.documentmanagement"+".provider",file);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(uri,"application/pdf");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(path,"application/pdf");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivity(intent);
+                }
+
+            }
+        });
+    }
 
 
     private Boolean isExistIntent() {
@@ -108,14 +207,60 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
             edit_Title.setText(document.getDocName());
             edit_content.setText(document.getNoiDung());
             btnSaveTmp.setVisibility(View.GONE);
+            setPdf(document.getDinhKem());
+            encodePDF = document.getDinhKem(); // lưu cho có chuyện
             return  true;
-
         }
         return false;
     }
 
+    private void setPdf(String dinhKem) {
+        pdfInBytes = Base64.decode(dinhKem, Base64.DEFAULT);
+        if(isStoragePermissionGranted()){
+            savePDF();
+        }
+    }
+
+    private void savePDF() {
+        String root = Environment.getExternalStorageDirectory().toString();
+        File myDir = new File(root + "/ManagerDocument");
+        if( !myDir.exists()){
+            myDir.mkdir();
+        }
+        try {
+            File fileLocation = new File(myDir, "myPDF.pdf");
+            FileOutputStream fos = new FileOutputStream(fileLocation);
+            fos.write(pdfInBytes);
+            fos.flush();
+            fos.close();
+            Toast.makeText(this, "Đã lưu file pdf!", Toast.LENGTH_SHORT).show();
+
+        }catch (Exception e){e.printStackTrace();}
+
+    }
+
+    public boolean isStoragePermissionGranted() {
+        String TAG = "Storage Permission";
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (this.checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG, "Quyền đã được cấp");
+                return true;
+            } else {
+                Log.v(TAG, "Quyền đã bị thu hồi");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return true;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG,"Quyền đã được cấp");
+            return true;
+        }
+    }
 
     private void mapping() {
+        btnUpPdf = findViewById(R.id.btnUpPdf);
+        txtFilePdf = findViewById(R.id.txtFilePdf);
         spinner = findViewById(R.id.spnRecipients);
         spnLevel = findViewById(R.id.spnLevel);
         spnDocType = findViewById(R.id.spnDocType);
@@ -282,25 +427,40 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
     }
 
     private void settmpSavebuton() {
-        btnSaveTmp.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                getdatetimeCurrent();
-                insertData("saveTmp");
-                Intent intent = new Intent(AddDocumentActivity.this,MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                finish();
-            }
-        });
+
+            btnSaveTmp.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onClick(View v) {
+                    if(encodePDF==null){
+                        Toast.makeText(getApplicationContext(), "Bỏ file đính kèm zô", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        getdatetimeCurrent();
+                        insertData("saveTmp");
+                        Intent intent = new Intent(AddDocumentActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        finish();
+                    }
+                }
+            });
+
+
     }
     public void setBtnSend() {
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                getdatetimeCurrent();
-                insertData("save");
+                if(encodePDF==null){
+                    Toast.makeText(getApplicationContext(), "Bỏ file đính kèm zô", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    getdatetimeCurrent();
+                    insertData("save");
+                }
+
 
             }
         });
@@ -312,18 +472,42 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.trim().equals("success")) {
-                            if(saction.equals("saveTmp")){
-                                Toast.makeText(getApplicationContext(), "Đã thêm vào danh sách chờ gửi", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(), "Đã gửi văn bản thành công", Toast.LENGTH_SHORT).show();
-                                Log.e("queeyyy", response);
-                            }
-
+                        if (response.trim().equals("erro")) {
+                            Toast.makeText(getApplicationContext(), "Cơ quan đã có văn bản này; Vui lòng chọn phòng ban khác", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Cơ quan đã có văn bản này; Vui lòng chọn phòng ban khác ", Toast.LENGTH_SHORT).show();
-                            Log.e("queeyyy", response);
+                            ////// Chèn tiếp pdf
+                            RequestQueue requestQueue2 = Volley.newRequestQueue(getApplicationContext());
+                            StringRequest stringRequest2 = new StringRequest(Request.Method.POST, Server.LinkInsertTableDinhKem, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.d("qurry",response);
+                                    if(saction.equals("saveTmp")){
+                                        Toast.makeText(getApplicationContext(), "Đã thêm vào danh sách chờ gửi", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        Toast.makeText(getApplicationContext(), "Đã gửi văn bản thành công", Toast.LENGTH_SHORT).show();
+                                        Log.e("queeyyy", response);
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }){
+                                @Nullable
+                                @Override
+                                protected Map<String, String> getParams() throws AuthFailureError {
+                                    HashMap<String,String> hashMap = new HashMap<String,String>();
+                                    hashMap.put("PDF",encodePDF);
+                                    hashMap.put("docNum",response);
+                                    return hashMap;
+                                }
+
+
+                            };
+                            requestQueue2.add(stringRequest2);
+                                    //////Chèn tiếp pdf
                         }
                     }
                 }, new Response.ErrorListener() {

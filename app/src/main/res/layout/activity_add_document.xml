@@ -116,12 +116,39 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Tệp đính kèm : " />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtFilePdf"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:text="file"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:layout_marginRight="50dp"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnUpPdf"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/radius_button_account"
+                    android:backgroundTint="@color/primary"
+                    android:text="Upload" />
+            </LinearLayout>
+        </LinearLayout>
+
 
     </LinearLayout>
     <LinearLayout
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
 
         >
@@ -131,12 +158,13 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:layout_marginBottom="5dp"
             android:text="Nội dung: " />
         <EditText
             android:background="@color/light_gray"
             android:id="@+id/edit_content"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
         android:gravity="center"

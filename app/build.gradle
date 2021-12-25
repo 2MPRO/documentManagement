@@ -4,10 +4,9 @@ plugins {
 
 android {
     compileSdk 31
-
     defaultConfig {
         applicationId "com.example.documentmanagement"
-        minSdk 21
+        minSdk 18
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -41,4 +40,8 @@ dependencies {
     implementation 'me.relex:circleindicator:2.1.6' // chibao slider img
     implementation 'com.squareup.picasso:picasso:2.71828'  // load img internet
     implementation 'com.google.android.material:material:1.4.0' // Bottom nav
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2' // view pdf
+
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }

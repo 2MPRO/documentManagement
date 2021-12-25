@@ -4,43 +4,43 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WIRTE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/bg_document"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/bg_document_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DocumentManagement">
+        android:theme="@style/Theme.DocumentManagement"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        >
+        <activity
+            android:name=".Controllers.Activity.ActivityViewPdf"
+             />
         <activity
             android:name=".Controllers.Activity.AddDocumentActivity"
-            android:exported="false" />
-
+             />
         <activity
             android:name=".Controllers.Activity.DocumentDetailActivity"
-            android:exported="false" />
-
+            />
         <activity
             android:name=".Controllers.Activity.PermissionActivity"
-            android:exported="false"/>
-
+            />
         <activity
             android:name=".Controllers.Activity.AccountManagerActivity"
-            android:exported="false"/>
-
+           />
         <activity
             android:name=".Controllers.Activity.AddAccountActivity"
-            android:exported="false"/>
-
+            />
         <activity
             android:name=".Controllers.Activity.AccountInformationActivity"
-            android:exported="false"/>
-
+            />
         <activity
             android:name=".Controllers.Activity.LoginActivity"
             android:exported="true">
@@ -52,7 +52,19 @@
         </activity>
         <activity
             android:name=".Controllers.Activity.MainActivity"
-            android:exported="false" />
+         />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.documentmanagement.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/xml_path" />
+        </provider>
     </application>
+
 
 </manifest>
