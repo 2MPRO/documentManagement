@@ -4,23 +4,23 @@
     android:layout_width="match_parent"
     android:padding="10dp"
     android:gravity="center"
-    android:layout_height="120dp">
+    android:layout_height="110dp">
 
     <LinearLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp">
+        android:layout_width="40dp"
+        android:layout_height="40dp">
 
         <ImageView
             android:id="@+id/imgUser"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_user"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -33,14 +33,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="16sp"
                 android:text="Họ tên: "/>
 
             <TextView
                 android:id="@+id/txt_hienthi_ten"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="16sp"
                 android:text="Tên người dùng: "
                 android:layout_marginLeft="10dp"/>
 
@@ -48,21 +48,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
 
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="16sp"
                 android:text="Phòng:"/>
 
             <TextView
                 android:id="@+id/txt_hienthi_phong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="16sp"
                 android:text="Tên phòng ban"
                 android:layout_marginLeft="10dp"/>
 

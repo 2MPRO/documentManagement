@@ -565,11 +565,7 @@ public class AddDocumentActivity extends AppCompatActivity implements Navigation
         hour = String.valueOf(hourofday) + ":" + String.valueOf(minute);
     }
 
-    @Override
-    public void onBackPressed() {
 
-        super.onBackPressed();
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
