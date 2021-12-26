@@ -1,11 +1,9 @@
 package com.example.documentmanagement.Controllers.Activity;
 
 import static com.example.documentmanagement.Controllers.Activity.AddDocumentActivity.idRecipient;
-import static com.example.documentmanagement.Controllers.Activity.LoginActivity.idRoom;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -128,7 +126,7 @@ public class AddAccountActivity extends AppCompatActivity {
         int date = calendar.get(Calendar.DATE);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme ,new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 calendar.set(i, i1, i2);
@@ -243,6 +241,8 @@ public class AddAccountActivity extends AppCompatActivity {
                     Log.e("QB", "onResponse: " + response);
                     if (response.contains("success")) {
                         Toast.makeText(getApplicationContext(), "THÊM THÀNH CÔNG", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(),AccountManagerActivity.class);
+                        startActivity(intent);
                         finish();
 
                     }

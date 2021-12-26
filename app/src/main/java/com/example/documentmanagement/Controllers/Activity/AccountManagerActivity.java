@@ -1,29 +1,20 @@
 package com.example.documentmanagement.Controllers.Activity;
 
-import static com.example.documentmanagement.Controllers.Activity.LoginActivity.idRoom;
-import static com.example.documentmanagement.Controllers.Activity.LoginActivity.iduser;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.documentmanagement.Controllers.Adapter.Document_Wait_Send_Adapter;
 import com.example.documentmanagement.Controllers.Adapter.User_Adapter;
-import com.example.documentmanagement.Controllers.Fragments.ApprovedSendFragment;
-import com.example.documentmanagement.Controllers.Fragments.WaitSendFragment;
 import com.example.documentmanagement.R;
 import com.example.documentmanagement.model.User;
 import com.example.documentmanagement.util.Server;
@@ -48,23 +39,21 @@ public class AccountManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_manager);
         mapping();
-        LoadData();
         setListView();
+        LoadData();
         ButtonThemMoi();
 
     }
 
     private void setListView() {
         listUser = new ArrayList<>();
-
         UserAdapter = new User_Adapter(AccountManagerActivity.this, R.layout.item_user, listUser);
         lv_DS_TaiKhoan.setAdapter(UserAdapter);
     }
 
     private void LoadData() {
-        //listUser.clear();
+        listUser.clear();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //Log.e("DCMM :", Server.LinkToLogin+"?idNguoiDung="+iduser);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Server.LinkgetListAccount,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -89,8 +78,6 @@ public class AccountManagerActivity extends AppCompatActivity {
                                     birthDay = object.getString("ngaysinh");
                                     sex = object.getString("gioitinh");
                                     diaChi = object.getString("diachi");
-
-
                                 listUser.add(new User(idUser, fullName, pass, idRoom, roomName, birthDay, sex, diaChi, "image"));
                                 UserAdapter.notifyDataSetChanged();
 
@@ -129,6 +116,8 @@ public class AccountManagerActivity extends AppCompatActivity {
         btnThem = findViewById(R.id.btn_ThemMoi);
     }
 
-
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
 }

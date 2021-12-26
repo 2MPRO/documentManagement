@@ -1,8 +1,6 @@
 package com.example.documentmanagement.Controllers.Activity;
 
-import static com.example.documentmanagement.Controllers.Activity.AddDocumentActivity.idRecipient;
 import static com.example.documentmanagement.Controllers.Activity.LoginActivity.use;
-import static com.example.documentmanagement.Controllers.Activity.MainActivity.permissionArrayList;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -17,18 +15,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.documentmanagement.R;
-import com.example.documentmanagement.model.Permission;
-import com.example.documentmanagement.model.User;
 import com.example.documentmanagement.util.Server;
 
 import org.json.JSONArray;
@@ -115,30 +109,23 @@ public class AccountInformationActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if(!response.trim().equals("failure")) {
-                            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
 
                             JSONArray jsonArray = null;
                             try {
                                 jsonArray = new JSONArray(response);
                                 JSONObject jsonObject;
-
-                                for(int i=0;i<jsonArray.length();i++){
-                                    jsonObject = jsonArray.getJSONObject(i);
-
-                                    permissionArrayList.add(new Permission(String.valueOf( jsonObject.getInt("idQuyen")),"noSelect"));
-                                    use.setIdUser(jsonObject.getString("taiKhoan").trim());
+                                    jsonObject = jsonArray.getJSONObject(0);                                    use.setIdUser(jsonObject.getString("taiKhoan").trim());
                                     use.setFullName(jsonObject.getString("hoten").trim());
                                     use.setPass( jsonObject.getString("matkhau").trim());
                                     use.setBirthDay(jsonObject.getString("ngaysinh").trim());
                                     use.setSex(jsonObject.getString("gioitinh").trim());
                                     use.setDiaChi(jsonObject.getString("diachi").trim());
-
                                     GetAccount();
-                                }
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
+                            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
                             finish();
                         }
                         else {
@@ -177,14 +164,13 @@ public class AccountInformationActivity extends AppCompatActivity {
         int date = calendar.get(Calendar.DATE);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme ,new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 calendar.set(i, i1, i2);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 etNgay.setText(simpleDateFormat.format(calendar.getTime()));
-
-            }
+                    }
         },date, month, year );
         datePickerDialog.show();
     }
