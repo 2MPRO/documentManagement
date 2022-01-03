@@ -65,7 +65,9 @@
                 android:layout_height="wrap_content"
                 android:text="NGhị quyết số 05 "
                 android:textColor="@color/text_light"
-                android:textSize="15sp"></TextView>
+                android:textSize="15sp">
+
+            </TextView>
         </LinearLayout>
 
     </LinearLayout>
